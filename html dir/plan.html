@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Cards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .pricing-container {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.free {
+            border-top: 5px solid #4CAF50;
+        }
+
+        .pricing-card.pro {
+            border-top: 5px solid #2196F3;
+        }
+
+        .pricing-card.enterprise {
+            border-top: 5px solid #9C27B0;
+        }
+
+        .pricing-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .pricing-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .pricing-price {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .pricing-price.free {
+            color: #4CAF50;
+        }
+
+        .pricing-price.pro {
+            color: #2196F3;
+        }
+
+        .pricing-price.enterprise {
+            color: #9C27B0;
+        }
+
+        .pricing-description {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .get-started {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .get-started:hover {
+            background-color: #555;
+        }
+
+        .features {
+            list-style-type: none;
+        }
+
+        .features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .features li:before {
+            content: "✓";
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pricing-container">
+        <div class="pricing-card free">
+            <h1 class="pricing-title">FREE</h1>
+            <h2 class="pricing-subtitle">GREAT FOR STARTERS</h2>
+            <div class="divider"></div>
+            <p class="pricing-description">Discover how to create your first projects.</p>
+            <button class="get-started">GET STARTED</button>
+            <ul class="features">
+                <li>1 User</li>
+                <li>5 Projects</li>
+                <li>10GB Storage</li>
+                <li>Priority Support</li>
+            </ul>
+        </div>
+
+        <div class="pricing-card pro">
+            <h1 class="pricing-title">PRO</h1>
+            <h2 class="pricing-subtitle">$7 /mo</h2>
+            <div class="divider"></div>
+            <p class="pricing-description">For planned projects</p>
+            <p class="pricing-description">Bring your designs to the next level and export them.</p>
+            <button class="get-started">GET STARTED</button>
+            <ul class="features">
+                <li>5 Users</li>
+                <li>50 Projects</li>
+                <li>100GB Storage</li>
+                <li>Priority Support</li>
+            </ul>
+        </div>
+
+        <div class="pricing-card enterprise">
+            <h1 class="pricing-title">ENTERPRISE</h1>
+            <h2 class="pricing-subtitle">$12 /mo</h2>
+            <div class="divider"></div>
+            <p class="pricing-description">For professional use</p>
+            <p class="pricing-description">Enjoy limitless use with interactive export options.</p>
+            <button class="get-started">GET STARTED</button>
+            <ul class="features">
+                <li>Unlimited Users</li>
+                <li>Unlimited Projects</li>
+                <li>Unlimited Storage</li>
+                <li>Priority Support</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

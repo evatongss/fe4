@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+<main>
+<label for="favlang">Favorite Programming Language</label>
+<input list="lang" name="favlang" id="favlang"/>
+<datalist id="lang">
+<option value="HTML"></option>
+<option value="CSS"></option>
+<option value="JAVASRIPT"></option>
+</datalist>
+<br>
+<!-- time -->
+<input type="time" list="popularHours" name="HappyHour" />
+<datalist id="popularHours">
+<option value="08:00"></option>
+<option value="10:00"></option>
+<option value="12:00"></option>
+</datalist>
+<br>
+<!-- tips -->
+<label for="tick">Tip Amount</label>
+<input
+type="range" 
+name="tick"
+list="tickmarks"
+min="0" max="100" id="tick">
+<datalist id="tickmarks">
+<option value="0"></option>
+<option value="10"></option>
+<option value="20"></option>
+<option value="30"></option>
+<option value="40"></option>
+<option value="50"></option>
+<option value="60"></option>
+<option value="70"></option>
+<option value="80"></option>
+<option value="90"></option>
+<option value="100"></option>
+</datalist>
+<br>
+<!-- color -->
+ <label for="color">Favorite Color</label>
+ <input type="color" 
+ name="color"
+ id="color"
+ list="refColors"
+ value="#ff0000"
+/>
+<datalist id="refColors">
+<option value="#ff0000"></option>
+<option value="#00ff00"></option>
+<option value="#0000ff"></option>
+</datalist>
+<br>
+<!--Progress meter  -->
+<label for="file">File Progress</label>
+<progress class="file" max="100" value="30">30%</progress>
+<!-- meter -->
+ <label for="fuel">Fuel:</label>
+<meter
+value="20"
+class="fuel"
+min="0"
+max="100"
+low="30"
+high="50"
+optimum="90"
+>
+50/100
+</meter>
+<br>
+<video width="400" src="/mp4/仍然很想相信你.mp4" type="video/quicktime"
+muted
+controls>
+</video>
+<figcation>Video 1 : card play</figcation>
+</figure>
+<!-- youtube -->
+<iframe src="http://youtube.com/embed/pM9IO3FCULQ"
+frameborder="0" width="560" height="315">
+</iframe>>
+<!-- PDF -->
+<iframe src="/PDF/JRP_Leaflet_En.pdf"
+type="application/pdf"
+width="100%"
+height="600px">
+</iframe>
+<!-- map -->
+<iframe
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d200574.16688298693!2d140.78285268254425!3d38.2337719649314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8a2aee30cd55d3%3A0xba2579e0b846b1ee!2z5pel5pys5a6u5Z-O57ij5LuZ5Y-w5biC!5e0!3m2!1szh-TW!2shk!4v1753148178534!5m2!1szh-TW!2shk"
+width="600" 
+height="450"
+style="border:0;" 
+allowfullscreen=""
+loading="lazy"
+referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+<!-- other -->
+<img src="/img/img21.jpg"
+alt=""usemap="#computermap" />
+<map name="computermap">
+<area
+shape="rect"
+coords="34,44,270,350"
+href="https:/www.apple.com"
+alt=""
+/>
+</map>
+</main>
+</body>
+</html>

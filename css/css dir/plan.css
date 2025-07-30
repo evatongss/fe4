@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;    
+}
+
+section{
+background-color: white;
+border: 5px black solid;
+padding: 30px 50px;
+margin: 30px;
+position:relative 30%;
+}
+
+/.free{
+    background-color: yellow;
+}
+
+H2 class{
+    font-size:2px;
+}
+
+

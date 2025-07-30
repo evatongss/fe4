@@ -1,0 +1,106 @@
+/* *{
+border: 1px solid red;    
+} */
+
+p{
+    color:darkgreen;
+}
+
+element.style {
+    body{
+        display:block;
+        font-size: 2em;
+        margin-block-start: 0.67em;
+        margin-block-end: 0.67em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+        unicode-range: U+1100-11FF;
+    }
+}
+
+*{
+    letter-spacing: 1px;
+word-spacing:3px;
+}
+/* element selector */
+p{
+    color: rgb(4, 0, 255);
+}
+#unique-box {
+    border: 2px solid black;
+    }
+/* class selectors */
+.simple {
+    color: red;
+}
+.box {
+   
+    background-color: blanchedalmond;
+}
+.inner-box {
+border: 1px solid blue
+}
+
+/* descendant selector */
+/* elemenet */ ul li {  color: orangered;
+}
+
+/* class */
+ul.list li.highlight 
+elemenet */ ul li {  color:red;
+}
+/* direct child with class */
+ul.list > li {
+    color:green;
+}
+
+/* direct child with element */
+div > h2 {
+    color:purple;
+}
+
+.box > .child{
+    color:blue;
+}
+.inner-box.first-box {
+ border: 3px solid rgb(0,242,255);
+}
+
+/*multiple elements */
+h5,h6{
+    color:cyan;
+}
+
+/* multiple classes */
+.multiple1,
+.multiple2{
+    color: rgb(255,0,238);
+}
+
+/*adjacent sibling selector */
+div + a {
+    color: gold;
+}
+
+.link + box-sibling {
+ background-color: lightcoral;
+}
+
+.box ~ .general-sibling {
+    color :#eaf610;
+    font-style: italic;
+}
+
+h1 ~ h4 {
+    color :brown;
+}
+
+.psuedo-class-link:hover {
+    color: #ff5733;
+    text-decoration: dashed;
+}
+
+p::first-line {
+    background-color: #5ce8c3;
+}

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界文化之旅</title>
+    <style>
+        /* CSS 樣式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            background-color: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav li {
+            margin: 0 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #3498db;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .destinations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .destination-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .destination-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .card-content p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .destination-detail {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .destination-detail h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .detail-content {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>世界文化之旅</h1>
+            <p>探索世界上最迷人的文化與歷史遺產</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" class="nav-link" data-section="home">首頁</a></li>
+            <li><a href="#" class="nav-link" data-section="kyoto">京都</a></li>
+            <li><a href="#" class="nav-link" data-section="rome">羅馬</a></li>
+            <li><a href="#" class="nav-link" data-section="cairo">開羅</a></li>
+            <li><a href="#" class="nav-link" data-section="cusco">庫斯科</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="home">
+            <div class="intro">
+                <h2>歡迎來到世界文化之旅</h2>
+                <p>我們精選了四個最具文化歷史價值的旅遊目的地，帶您深入瞭解這些城市的歷史背景、文化特色和必訪景點。無論您是歷史愛好者還是文化探索者，都能在這裡找到適合您的旅遊資訊。</p>
+            </div>
+
+            <div class="destinations">
+                <div class="destination-card" data-destination="kyoto">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                            alt="京都">
+                    </div>
+                    <div class="card-content">
+                        <h3>京都，日本</h3>
+                        <p>擁有超過一千年的歷史，曾是日本的首都，保存著豐富的文化遺產和傳統。</p>
+                        <a href="#" class="btn learn-more" data-destination="kyoto">了解更多</a>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-destination="rome">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                            alt="羅馬">
+                    </div>
+                    <div class="card-content">
+                        <h3>羅馬，義大利</h3>
+                        <p>永恆之城，古羅馬帝國的中心，擁有無數歷史遺跡和藝術珍品。</p>
+                        <a href="#" class="btn learn-more" data-destination="rome">了解更多</a>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-destination="cairo">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                            alt="開羅">
+                    </div>
+                    <div class="card-content">
+                        <h3>開羅，埃及</h3>
+                        <p>尼羅河畔的古老城市，金字塔和獅身人面像的故鄉，擁有五千年文明歷史。</p>
+                        <a href="#" class="btn learn-more" data-destination="cairo">了解更多</a>
+                    </div>
+                </div>
+
+                <div class="destination-card" data-destination="cusco">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                            alt="庫斯科">
+                    </div>
+                    <div class="card-content">
+                        <h3>庫斯科，秘魯</h3>
+                        <p>印加帝國的古都，安第斯山脈中的文化瑰寶，馬丘比丘的門戶。</p>
+                        <a href="#" class="btn learn-more" data-destination="cusco">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 京都詳細資訊 -->
+        <section id="kyoto-detail" class="destination-detail">
+            <h2>京都，日本</h2>
+            <div class="detail-content">
+                <div>
+                    <div class="detail-section">
+                        <h3>歷史背景</h3>
+                        <p>京都自794年至1868年間一直是日本的首都，擁有"千年古都"之稱。在平安時代，京都成為日本政治、文化和宗教的中心。雖然經歷了多次戰爭和火災，京都仍保留了大量的歷史建築和文化傳統。
+                        </p>
+                        <p>第二次世界大戰期間，京都因其文化價值被從原子彈轟炸目標名單中移除，使得這座城市的歷史遺產得以完整保存。</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>文化特色</h3>
+                        <p>京都是日本傳統文化的中心，茶道、花道、能劇等傳統藝術在此發揚光大。京都也是和服文化的重要保存地，許多傳統工藝如西陣織、京友禪等至今仍在生產。</p>
+                        <p>京都的飲食文化也非常豐富，懷石料理、京野菜、抹茶甜點等都是京都的代表性美食。每年舉行的祇園祭、葵祭、時代祭等傳統祭典吸引了大量遊客。</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="detail-section">
+                        <h3>必訪景點</h3>
+                        <ul>
+                            <li><strong>金閣寺</strong> - 貼滿金箔的佛教寺廟，京都最著名的地標之一</li>
+                            <li><strong>清水寺</strong> - 建於懸崖上的古老寺廟，擁有俯瞰京都的絕佳視野</li>
+                            <li><strong>伏見稻荷大社</strong> - 以數千座紅色鳥居聞名的神社</li>
+                            <li><strong>嵐山</strong> - 以竹林小徑和渡月橋聞名的風景區</li>
+                            <li><strong>二條城</strong> - 德川家康在京都的居所，見證了幕府時代的結束</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>旅遊建議</h3>
+                        <p>最佳旅遊季節是春季（櫻花季）和秋季（紅葉季），但這兩個時段遊客也最多。京都的公共交通便利，建議購買一日券。許多寺廟和神社有嚴格的參觀禮儀，請提前了解並遵守。</p>
+                        <p>體驗茶道、穿著和服漫步古街、品嘗懷石料理都是不可錯過的京都特色體驗。</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>圖片集錦</h3>
+                        <div class="gallery">
+                            <img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="京都金閣寺">
+                            <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="京都竹林">
+                            <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="京都街道">
+                            <img src="https://images.unsplash.com/photo-1558862103-67b1f716fd3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="京都神社">
+                            <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="京都和服">
+                            <img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="京都夜景">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn back-btn">返回首頁</a>
+        </section>
+
+        <!-- 羅馬詳細資訊 -->
+        <section id="rome-detail" class="destination-detail">
+            <h2>羅馬，義大利</h2>
+            <div class="detail-content">
+                <div>
+                    <div class="detail-section">
+                        <h3>歷史背景</h3>
+                        <p>羅馬建城於公元前753年，是古羅馬帝國的中心，被稱為"永恆之城"。從一個小村莊發展成為橫跨歐亞非三大洲的龐大帝國，羅馬的歷史影響了整個西方文明。</p>
+                        <p>中世紀時期，羅馬成為天主教會的中心。文藝復興時期，羅馬再次成為藝術和文化的重鎮。今天的羅馬是義大利的首都，融合了古代、中世紀和現代的多層次歷史。</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>文化特色</h3>
+                        <p>羅馬是巴洛克藝術的發源地，貝尼尼、卡拉瓦喬等藝術大師的作品隨處可見。羅馬也是美食之都，義大利麵、披薩、冰淇淋等美食享譽全球。</p>
+                        <p>羅馬的生活方式以"甜蜜生活"(Dolce Vita)聞名，悠閒的咖啡文化、傍晚的散步(passeggiata)和熱鬧的廣場生活是羅馬的特色。</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="detail-section">
+                        <h3>必訪景點</h3>
+                        <ul>
+                            <li><strong>羅馬競技場</strong> - 古羅馬最大的圓形劇場，角鬥士比賽的場所</li>
+                            <li><strong>萬神殿</strong> - 保存最完好的古羅馬建築，擁有世界上最大的無鋼筋混凝土穹頂</li>
+                            <li><strong>梵蒂岡城</strong> - 世界上最小的國家，聖彼得大教堂和西斯汀禮拜堂所在地</li>
+                            <li><strong>特萊維噴泉</strong> - 巴洛克風格的華麗噴泉，傳說投幣可確保重返羅馬</li>
+                            <li><strong>羅馬廣場</strong> - 古羅馬的政治、商業和宗教中心遺址</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>旅遊建議</h3>
+                        <p>春季和秋季是最佳旅遊季節，夏季炎熱且遊客眾多。羅馬的歷史中心適合步行探索，建議購買Roma Pass可節省景點門票和交通費用。</p>
+                        <p>參觀教堂需注意著裝規範(遮蓋肩膀和膝蓋)，許多博物館和遺址需要提前預約。品嘗地道的羅馬美食如carbonara義大利麵、supplì炸飯糰和cacio e
+                            pepe乳酪胡椒麵是不可錯過的體驗。</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>圖片集錦</h3>
+                        <div class="gallery">
+                            <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="羅馬競技場">
+                            <img src="https://images.unsplash.com/photo-1531572753322-ad063cecc140?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="萬神殿">
+                            <img src="https://images.unsplash.com/photo-1588614959060-4d144d28ad6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="特萊維噴泉">
+                            <img src="https://images.unsplash.com/photo-1566438480900-0609be27a4be?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="聖彼得大教堂">
+                            <img src="https://images.unsplash.com/photo-1529260830199-42c24126f198?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="羅馬廣場">
+                            <img src="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="羅馬街道">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn back-btn">返回首頁</a>
+        </section>
+
+        <!-- 開羅詳細資訊 -->
+        <section id="cairo-detail" class="destination-detail">
+            <h2>開羅，埃及</h2>
+            <div class="detail-content">
+                <div>
+                    <div class="detail-section">
+                        <h3>歷史背景</h3>
+                        <p>開羅位於尼羅河三角洲頂端，歷史可追溯至公元前2000年。現代開羅建於公元969年，是法蒂瑪王朝的首都。開羅曾是伊斯蘭世界的學術和文化中心，擁有世界上最古老的大學——愛資哈爾大學。</p>
+                        <p>開羅附近的吉薩金字塔群建於約4500年前，是古代世界七大奇蹟中唯一仍存在的建築。19世紀，開羅成為現代埃及的首都，並發展成為非洲最大的城市之一。</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>文化特色</h3>
+                        <p>開羅是阿拉伯文化的重鎮，融合了法老、希臘羅馬、科普特基督教和伊斯蘭等多種文化影響。傳統音樂、舞蹈和文學在開羅蓬勃發展。</p>
+                        <p>開羅的市集(如汗·哈利利市場)是體驗當地文化的好地方，可以找到傳統手工藝品、香料和銅器。埃及美食如富爾(foul)、塔米亞(tamiya)和烤鴿子都是開羅的特色。</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="detail-section">
+                        <h3>必訪景點</h3>
+                        <ul>
+                            <li><strong>吉薩金字塔</strong> - 包括胡夫金字塔、獅身人面像等古代世界奇蹟</li>
+                            <li><strong>埃及博物館</strong> - 收藏超過12萬件古埃及文物，包括圖坦卡門的黃金面具</li>
+                            <li><strong>薩拉丁城堡</strong> - 中世紀伊斯蘭要塞，可俯瞰開羅全景</li>
+                            <li><strong>汗·哈利利市場</strong> - 中東最大的傳統市場，已有600多年歷史</li>
+                            <li><strong>科普特開羅</strong> - 古老的基督教區，有懸空教堂等歷史建築</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>旅遊建議</h3>
+                        <p>最佳旅遊季節是10月至次年4月，避開夏季高溫。參觀金字塔最好在清晨或傍晚，光線適合拍照且氣溫較舒適。建議聘請官方導遊，避免被小販騷擾。</p>
+                        <p>女性遊客應穿著保守，避免單獨行動。品嘗當地美食時注意衛生，建議只飲用瓶裝水。尼羅河遊船和傳統水煙體驗是開羅的特色活動。</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>圖片集錦</h3>
+                        <div class="gallery">
+                            <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="吉薩金字塔">
+                            <img src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="獅身人面像">
+                            <img src="https://images.unsplash.com/photo-1584735422189-dcd1655a4a5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="埃及博物館">
+                            <img src="https://images.unsplash.com/photo-1580077873521-dc86339f0953?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="薩拉丁城堡">
+                            <img src="https://images.unsplash.com/photo-1580077873521-dc86339f0953?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="汗·哈利利市場">
+                            <img src="https://images.unsplash.com/photo-1584735422189-dcd1655a4a5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="尼羅河">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn back-btn">返回首頁</a>
+        </section>
+
+        <!-- 庫斯科詳細資訊 -->
+        <section id="cusco-detail" class="destination-detail">
+            <h2>庫斯科，秘魯</h2>
+            <div class="detail-content">
+                <div>
+                    <div class="detail-section">
+                        <h3>歷史背景</h3>
+                        <p>庫斯科在克丘亞語中意為"肚臍"，曾是印加帝國的首都，被認為是世界的中心。根據印加傳說，庫斯科由第一位印加王曼科·卡帕克於12世紀建立。</p>
+                        <p>16世紀西班牙征服者摧毀了大部分印加建築，在原有基礎上建造了殖民風格的教堂和宮殿，形成了獨特的印加-西班牙混合建築風格。1983年，庫斯科被聯合國教科文組織列為世界遺產。</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>文化特色</h3>
+                        <p>庫斯科保留了豐富的印加傳統文化，克丘亞語仍被廣泛使用。傳統紡織、陶器和銀器製作工藝代代相傳。印加太陽祭(Inti Raymi)是每年最重要的傳統節日。</p>
+                        <p>庫斯科的美食融合了印加和西班牙傳統，如烤豚鼠(cuy)、玉米啤酒(chicha)和各種馬鈴薯料理。當地市場是體驗安第斯文化的好地方。</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="detail-section">
+                        <h3>必訪景點</h3>
+                        <ul>
+                            <li><strong>馬丘比丘</strong> - 世界新七大奇蹟之一，印加帝國的失落之城</li>
+                            <li><strong>庫斯科武器廣場</strong> - 城市中心，周圍環繞著殖民建築和教堂</li>
+                            <li><strong>薩克塞華曼</strong> - 印加巨石要塞，以精確切割的巨大石塊聞名</li>
+                            <li><strong>聖布拉斯區</strong> - 藝術家聚集的波希米亞風格街區</li>
+                            <li><strong>聖多明各教堂</strong> - 建於印加太陽神殿科里坎查遺址上的教堂</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>旅遊建議</h3>
+                        <p>最佳旅遊季節是5月至9月的旱季。庫斯科海拔3400米，建議抵達後休息1-2天適應高原反應。前往馬丘比丘需提前預訂火車票和門票，旺季時可能需提前數月。</p>
+                        <p>建議學習幾句基本的克丘亞語問候語，當地人會很欣賞。購買手工藝品時可以適當議價。體驗傳統安第斯音樂表演和品嘗古柯茶都是不錯的文化體驗。</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>圖片集錦</h3>
+                        <div class="gallery">
+                            <img src="https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="馬丘比丘">
+                            <img src="https://images.unsplash.com/photo-1526397751294-331021109fbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="庫斯科武器廣場">
+                            <img src="https://images.unsplash.com/photo-1526397751294-331021109fbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="薩克塞華曼">
+                            <img src="https://images.unsplash.com/photo-1525873020571-08690094e301?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="聖布拉斯區">
+                            <img src="https://images.unsplash.com/photo-1525873020571-08690094e301?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="科里坎查">
+                            <img src="https://images.unsplash.com/photo-1525873020571-08690094e301?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                                alt="庫斯科街道">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn back-btn">返回首頁</a>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3>世界文化之旅</h3>
+            <p>探索世界文化遺產，體驗人類文明的多樣性</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2023 世界文化之旅. 保留所有權利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript 功能
+        document.addEventListener('DOMContentLoaded', function () {
+            // 導航連結點擊事件
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const section = this.getAttribute('data-section');
+
+                    // 隱藏所有詳細資訊區塊
+                    document.querySelectorAll('.destination-detail').forEach(detail => {
+                        detail.style.display = 'none';
+                    });
+
+                    // 顯示首頁或對應的詳細資訊
+                    if (section === 'home') {
+                        document.getElementById('home').style.display = 'block';
+                    } else {
+                        document.getElementById('home').style.display = 'none';
+                        document.getElementById(`${section}-detail`).style.display = 'block';
+                    }
+
+                    // 滾動到頂部
+                    window.scrollTo(0, 0);
+                });
+            });
+
+            // 了解更多按鈕點擊事件
+            const learnMoreBtns = document.querySelectorAll('.learn-more');
+            learnMoreBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const destination = this.getAttribute('data-destination');
+
+                    // 隱藏首頁和所有詳細資訊
+                    document.getElementById('home').style.display = 'none';
+                    document.querySelectorAll('.destination-detail').forEach(detail => {
+                        detail.style.display = 'none';
+                    });
+
+                    // 顯示對應的詳細資訊
+                    document.getElementById(`${destination}-detail`).style.display = 'block';
+
+                    // 滾動到頂部
+                    window.scrollTo(0, 0);
+                });
+            });
+
+            // 返回按鈕點擊事件
+            const backBtns = document.querySelectorAll('.back-btn');
+            backBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // 隱藏所有詳細資訊
+                    document.querySelectorAll('.destination-detail').forEach(detail => {
+                        detail.style.display = 'none';
+                    });
+
+                    // 顯示首頁
+                    document.getElementById('home').style.display = 'block';
+
+                    // 滾動到頂部
+                    window.scrollTo(0, 0);
+                });
+            });
+
+            // 目的地卡片點擊事件
+            const destinationCards = document.querySelectorAll('.destination-card');
+            destinationCards.forEach(card => {
+                card.addEventListener('click', function (e) {
+                    // 確保點擊的不是卡片內的按鈕
+                    if (!e.target.classList.contains('btn')) {
+                        const destination = this.getAttribute('data-destination');
+
+                        // 隱藏首頁和所有詳細資訊
+                        document.getElementById('home').style.display = 'none';
+                        document.querySelectorAll('.destination-detail').forEach(detail => {
+                            detail.style.display = 'none';
+                        });
+
+                        // 顯示對應的詳細資訊
+                        document.getElementById(`${destination}-detail`).style.display = 'block';
+
+                        // 滾動到頂部
+                        window.scrollTo(0, 0);
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- Font Awesome 圖標庫 -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

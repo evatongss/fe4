@@ -1,0 +1,86 @@
+html,
+body {
+margin: 0;
+padding: 0;    
+}
+
+* {
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+line-height: 2;
+}
+
+.container {
+max-width: 600px;
+margin: 30px auto;
+padding: 2rem;
+}
+
+/* Direct child */
+.container > p {
+font-weight: bold;    
+color: red;
+margin-bottom: 10px;
+}
+
+.container > ul {
+list-style :none;
+}
+
+.container > a {
+color: green;    
+}
+
+/*Immediate sibling of h1  */
+.container h1 + a {
+color: cyan;
+font-weight: bold;    
+}
+
+/* sibling after h1 */
+.container h1 ~ a {
+color: coral;
+}
+
+/*all Sibling div to the direct ul children of the container*/
+.container > ul ~ div + a {
+ background-color: lightblue   
+}
+
+/* ******************************** */
+/* n-child example */
+/* first child */
+ul li:first-child {
+background-color: cyan;    
+}
+
+ul li:last-child {
+background-color: coral;    
+}
+
+ul li:nth-child(odd) {
+background-color: lightgreen;    
+}
+
+ul li:nth-child(even) {
+background-color: yellow;
+}
+
+ul li:nth-child(8) {
+background-color: red;    
+}
+
+ul li:nth-child(5n) {
+background-color: gold;    
+}
+
+.container h2 a:only-child {
+background-color: pink
+}
+
+.container div:only-of-type {
+background: lightsalmon;
+}

@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドラゴンボール格闘ゲーム</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f8ff;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0 0 L100 0 L100 100 L0 100 Z' fill='%23ffcc66' opacity='0.1'/%3E%3Ccircle cx='20' cy='20' r='10' fill='%23ff9933' opacity='0.1'/%3E%3Ccircle cx='80' cy='80' r='10' fill='%23ff9933' opacity='0.1'/%3E%3C/svg%3E");
+        }
+
+        .character {
+            transition: transform 0.3s ease, filter 0.3s ease;
+            cursor: pointer;
+        }
+
+        .character:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
+        .selected {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 12px rgba(255, 165, 0, 0.9));
+            border: 3px solid #ffa500;
+        }
+
+        .battle-area {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'%3E%3Crect width='800' height='400' fill='%23a7cfdf'/%3E%3Cpath d='M0 300 Q 400 200 800 300 L 800 400 L 0 400 Z' fill='%23593b1a'/%3E%3Cpath d='M0 320 Q 400 250 800 320 L 800 400 L 0 400 Z' fill='%23734d23'/%3E%3Cpath d='M0 340 Q 400 300 800 340 L 800 400 L 0 400 Z' fill='%238b5d2e'/%3E%3Ccircle cx='600' cy='100' r='40' fill='%23fff700' opacity='0.8'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .energy-ball {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(0, 195, 255, 1) 50%, rgba(0, 88, 255, 1) 100%);
+            box-shadow: 0 0 15px #00eeff, 0 0 30px #00eeff;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.1s;
+        }
+
+        .kamehameha {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(0, 212, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(0, 212, 255, 1) 100%);
+            box-shadow: 0 0 20px #00eeff, 0 0 40px #00eeff;
+            z-index: 10;
+            opacity: 0;
+            border-radius: 50px;
+            transform-origin: left center;
+        }
+
+        .final-flash {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(255, 236, 0, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 236, 0, 1) 100%);
+            box-shadow: 0 0 20px #ffec00, 0 0 40px #ffec00;
+            z-index: 10;
+            opacity: 0;
+            border-radius: 50px;
+            transform-origin: right center;
+        }
+
+        .makankosappo {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(255, 255, 0, 1) 0%, rgba(255, 165, 0, 1) 50%, rgba(255, 69, 0, 1) 100%);
+            box-shadow: 0 0 20px #ff6600, 0 0 40px #ff6600;
+            z-index: 10;
+            opacity: 0;
+            border-radius: 50px;
+            transform-origin: left center;
+        }
+
+        .death-beam {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 0, 0, 1) 100%);
+            box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+            z-index: 10;
+            opacity: 0;
+            border-radius: 50px;
+            transform-origin: right center;
+        }
+
+        .special-move-name {
+            position: absolute;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .health-bar {
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .health-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            border-radius: 10px;
+            transition: width 0.5s ease-out;
+        }
+
+        .character-container {
+            position: relative;
+        }
+
+        .character-name {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .game-title {
+            background: linear-gradient(to right, #ff8a00, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .attack-button {
+            transition: all 0.2s ease;
+        }
+
+        .attack-button:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .attack-button:active {
+            transform: scale(0.95);
+        }
+
+        .game-over {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+
+        .dragon-ball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255, 165, 0, 1) 0%, rgba(255, 140, 0, 1) 70%, rgba(255, 69, 0, 1) 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.8);
+        }
+
+        .dragon-ball::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 5 L12 10 L10 15 L8 10 Z' fill='%23cc0000'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 game-title">ドラゴンボール格闘ゲーム</h1>
+
+        <div id="character-selection" class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-center">選擇你的角色</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- 角色選擇區 -->
+            </div>
+        </div>
+
+        <div id="game-container" class="hidden">
+            <div class="flex justify-between mb-4">
+                <div class="w-1/3">
+                    <h3 id="player-name" class="text-xl font-bold mb-2">孫悟空</h3>
+                    <div class="health-bar">
+                        <div id="player-health" class="health-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="w-1/3 text-center">
+                    <button id="restart-button"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        重新開始
+                    </button>
+                </div>
+                <div class="w-1/3 text-right">
+                    <h3 id="enemy-name" class="text-xl font-bold mb-2">比達</h3>
+                    <div class="health-bar">
+                        <div id="enemy-health" class="health-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="battle-area h-96 rounded-lg relative mb-4">
+                <div id="player-character" class="absolute bottom-0 left-10 h-64 w-auto"></div>
+                <div id="enemy-character" class="absolute bottom-0 right-10 h-64 w-auto"></div>
+                <div id="special-move-name" class="special-move-name"></div>
+                <div id="game-over" class="game-over">
+                    <h2 class="text-4xl font-bold text-white mb-4">遊戲結束</h2>
+                    <p id="winner-text" class="text-2xl text-white mb-6">你贏了！</p>
+                    <button id="play-again"
+                        class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg pulse">
+                        再玩一次
+                    </button>
+                </div>
+
+                <!-- 添加七龍珠裝飾 -->
+                <div class="dragon-ball" style="top: 20px; left: 50px;"></div>
+                <div class="dragon-ball" style="top: 40px; right: 80px;"></div>
+                <div class="dragon-ball" style="bottom: 60px; left: 200px;"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button class="attack-button bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg"
+                    data-attack="normal">
+                    普通攻擊
+                </button>
+                <button class="attack-button bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg"
+                    data-attack="special">
+                    特殊攻擊
+                </button>
+                <button
+                    class="attack-button bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded-lg"
+                    data-attack="ultimate">
+                    必殺技
+                </button>
+                <button class="attack-button bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg"
+                    data-attack="defense">
+                    防禦
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const characters = [
+            {
+                id: 'goku',
+                name: '孫悟空',
+                health: 1000,
+                attack: 100,
+                defense: 80,
+                special: 'かめはめ波',
+                ultimate: '元気玉',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#FFB266"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="white"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="white"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 90 C95 95 105 95 110 90" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M60 40 C70 20 90 10 100 10 C110 10 130 20 140 40" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M60 40 C70 30 90 25 100 25 C110 25 130 30 140 40" fill="#000000"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#FF6600"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#0066CC"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#0066CC"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#0066CC"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#0066CC"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#0066CC"/>
+                </svg>`
+            },
+            {
+                id: 'vegeta',
+                name: '比達',
+                health: 950,
+                attack: 110,
+                defense: 90,
+                special: 'ギャリック砲',
+                ultimate: 'ファイナルフラッシュ',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#FFB266"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="white"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="white"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 95 C95 90 105 90 110 95" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M60 30 C70 10 90 0 100 0 C110 0 130 10 140 30" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M60 30 C70 20 90 15 100 15 C110 15 130 20 140 30" fill="#000000"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#0000CC"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#FFFFFF"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#FFFFFF"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#FFFFFF"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#FFFFFF"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#FFFFFF"/>
+                </svg>`
+            },
+            {
+                id: 'gohan',
+                name: '孫悟飯',
+                health: 900,
+                attack: 90,
+                defense: 70,
+                special: 'マッセンコ',
+                ultimate: '親子かめはめ波',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#FFB266"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="white"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="white"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 90 C95 95 105 95 110 90" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M70 30 C80 20 90 15 100 15 C110 15 120 20 130 30" fill="#000000"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#6600CC"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#FF0000"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#FF0000"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#FF0000"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#FF0000"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#FF0000"/>
+                </svg>`
+            },
+            {
+                id: 'goten',
+                name: '孫悟天',
+                health: 800,
+                attack: 80,
+                defense: 60,
+                special: 'かめはめ波',
+                ultimate: '兄弟かめはめ波',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#FFB266"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="white"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="white"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 90 C95 95 105 95 110 90" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M70 30 C80 20 90 15 100 15 C110 15 120 20 130 30" fill="#000000"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#FF9900"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#0066FF"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#0066FF"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#0066FF"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#0066FF"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#0066FF"/>
+                </svg>`
+            },
+            {
+                id: 'piccolo',
+                name: '比克',
+                health: 850,
+                attack: 85,
+                defense: 100,
+                special: '魔貫光殺砲',
+                ultimate: '地獄閃光',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#99CC66"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="white"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="white"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 95 C95 90 105 90 110 95" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M80 10 L100 0 L120 10" fill="#99CC66"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#663300"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#6600CC"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#6600CC"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#6600CC"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#6600CC"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#6600CC"/>
+                    <path d="M60 80 L40 100 L60 100" fill="#99CC66"/>
+                    <path d="M140 80 L160 100 L140 100" fill="#99CC66"/>
+                </svg>`
+            },
+            {
+                id: 'trunks',
+                name: 'トランクス',
+                health: 880,
+                attack: 95,
+                defense: 75,
+                special: '烈風斬',
+                ultimate: 'ヒートドームアタック',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#FFB266"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="white"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="white"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 95 C95 90 105 90 110 95" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M70 30 C80 20 90 15 100 15 C110 15 120 20 130 30" fill="#CC99FF"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#000066"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#CCCCCC"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#CCCCCC"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#CCCCCC"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#CCCCCC"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#CCCCCC"/>
+                </svg>`
+            },
+            {
+                id: 'cell',
+                name: 'セル',
+                health: 950,
+                attack: 100,
+                defense: 90,
+                special: 'エネルギー吸収',
+                ultimate: 'パーフェクトかめはめ波',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#99CC99"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="#FF0000"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="#FF0000"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 95 C95 90 105 90 110 95" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M80 10 L100 0 L120 10" fill="#99CC99"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#006600"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#660066"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#660066"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#660066"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#660066"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#660066"/>
+                    <path d="M60 80 L40 100 L60 100" fill="#99CC99"/>
+                    <path d="M140 80 L160 100 L140 100" fill="#99CC99"/>
+                    <path d="M90 130 L100 140 L110 130" fill="#000000"/>
+                </svg>`
+            },
+            {
+                id: 'frieza',
+                name: 'フリーザ',
+                health: 900,
+                attack: 110,
+                defense: 80,
+                special: 'デスビーム',
+                ultimate: 'デスボール',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#FFFFFF"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="#FF0000"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="#FF0000"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 95 C95 90 105 90 110 95" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M80 10 L100 0 L120 10" fill="#CC99CC"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#CC99CC"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#660066"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#660066"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#660066"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#660066"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#660066"/>
+                </svg>`
+            },
+            {
+                id: 'buu',
+                name: '魔人ブウ',
+                health: 1100,
+                attack: 120,
+                defense: 70,
+                special: '変身光線',
+                ultimate: '魔人消滅攻撃',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#FFCCCC"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="white"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="white"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 90 C95 95 105 95 110 90" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M70 30 C80 10 120 10 130 30" fill="#FFCCCC"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#FF99CC"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#CC0099"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#CC0099"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#CC0099"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#CC0099"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#CC0099"/>
+                    <path d="M60 40 C50 30 50 50 60 60" fill="#FFCCCC"/>
+                    <path d="M140 40 C150 30 150 50 140 60" fill="#FFCCCC"/>
+                </svg>`
+            },
+            {
+                id: 'android18',
+                name: '人造人間18号',
+                health: 850,
+                attack: 90,
+                defense: 85,
+                special: 'エネルギー吸収',
+                ultimate: '無限エネルギー波',
+                svg: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C130 20 150 50 150 80 C150 110 130 130 100 130 C70 130 50 110 50 80 C50 50 70 20 100 20" fill="#FFD700"/>
+                    <path d="M70 70 C70 75 75 80 80 80 C85 80 90 75 90 70 C90 65 85 60 80 60 C75 60 70 65 70 70" fill="white"/>
+                    <path d="M110 70 C110 75 115 80 120 80 C125 80 130 75 130 70 C130 65 125 60 120 60 C115 60 110 65 110 70" fill="white"/>
+                    <circle cx="80" cy="70" r="5" fill="black"/>
+                    <circle cx="120" cy="70" r="5" fill="black"/>
+                    <path d="M90 90 C95 95 105 95 110 90" stroke="black" stroke-width="2" fill="none"/>
+                    <path d="M70 30 C80 20 90 15 100 15 C110 15 120 20 130 30" fill="#FFD700"/>
+                    <path d="M70 130 L60 200 L80 200 L75 230 L85 230 L100 160 L115 230 L125 230 L120 200 L140 200 L130 130" fill="#0066CC"/>
+                    <path d="M70 130 L130 130 L140 150 L60 150" fill="#FFFFFF"/>
+                    <path d="M60 150 L50 200 L60 200" fill="#FFFFFF"/>
+                    <path d="M140 150 L150 200 L140 200" fill="#FFFFFF"/>
+                    <path d="M80 200 L75 230 L85 230 L90 200" fill="#FFFFFF"/>
+                    <path d="M110 200 L115 230 L125 230 L120 200" fill="#FFFFFF"/>
+                    <circle cx="100" cy="140" r="5" fill="#FF0000"/>
+                </svg>`
+            }
+        ];
+
+        // 初始化遊戲
+        document.addEventListener('DOMContentLoaded', function () {
+            const characterSelectionDiv = document.querySelector('#character-selection .grid');
+
+            // 生成角色選擇區
+            characters.forEach(character => {
+                const characterDiv = document.createElement('div');
+                characterDiv.className = 'character-container bg-white p-4 rounded-lg shadow-md text-center character';
+                characterDiv.dataset.id = character.id;
+                characterDiv.innerHTML = `
+                    ${character.svg}
+                    <div class="character-name">${character.name}</div>
+                `;
+                characterSelectionDiv.appendChild(characterDiv);
+            });
+
+            // 角色選擇事件
+            const characterElements = document.querySelectorAll('.character');
+            characterElements.forEach(element => {
+                element.addEventListener('click', function () {
+                    // 移除其他角色的選中狀態
+                    characterElements.forEach(el => el.classList.remove('selected'));
+                    // 添加當前角色的選中狀態
+                    this.classList.add('selected');
+
+                    // 開始遊戲
+                    startGame(this.dataset.id);
+                });
+            });
+
+            // 重新開始按鈕事件
+            document.getElementById('restart-button').addEventListener('click', function () {
+                document.getElementById('character-selection').classList.remove('hidden');
+                document.getElementById('game-container').classList.add('hidden');
+            });
+
+            // 再玩一次按鈕事件
+            document.getElementById('play-again').addEventListener('click', function () {
+                const gameOver = document.getElementById('game-over');
+                gameOver.style.opacity = '0';
+                gameOver.style.pointerEvents = 'none';
+
+                document.getElementById('character-selection').classList.remove('hidden');
+                document.getElementById('game-container').classList.add('hidden');
+            });
+        });
+
+        // 開始遊戲
+        function startGame(playerId) {
+            // 隱藏角色選擇區，顯示遊戲區
+            document.getElementById('character-selection').classList.add('hidden');
+            document.getElementById('game-container').classList.remove('hidden');
+
+            // 獲取玩家角色
+            const playerCharacter = characters.find(char => char.id === playerId);
+
+            // 隨機選擇敵人角色（不能是玩家角色）
+            let enemyCharacter;
+            do {
+                enemyCharacter = characters[Math.floor(Math.random() * characters.length)];
+            } while (enemyCharacter.id === playerId);
+
+            // 設置玩家和敵人的名稱
+            document.getElementById('player-name').textContent = playerCharacter.name;
+            document.getElementById('enemy-name').textContent = enemyCharacter.name;
+
+            // 設置玩家和敵人的圖像
+            document.getElementById('player-character').innerHTML = playerCharacter.svg;
+            document.getElementById('enemy-character').innerHTML = enemyCharacter.svg;
+
+            // 重置血量
+            document.getElementById('player-health').style.width = '100%';
+            document.getElementById('enemy-health').style.width = '100%';
+
+            // 設置遊戲狀態
+            const gameState = {
+                player: {
+                    ...playerCharacter,
+                    currentHealth: playerCharacter.health
+                },
+                enemy: {
+                    ...enemyCharacter,
+                    currentHealth: enemyCharacter.health
+                },
+                isDefending: false
+            };
+
+            // 移除之前的事件監聽器
+            const attackButtons = document.querySelectorAll('.attack-button');
+            attackButtons.forEach(button => {
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+            });
+
+            // 添加新的事件監聽器
+            document.querySelectorAll('.attack-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    const attackType = this.dataset.attack;
+                    handleAttack(attackType, gameState);
+                });
+            });
+        }
+
+        // 處理攻擊
+        function handleAttack(attackType, gameState) {
+            let damage = 0;
+            let specialMoveName = '';
+
+            // 根據攻擊類型計算傷害
+            switch (attackType) {
+                case 'normal':
+                    damage = gameState.player.attack * (0.8 + Math.random() * 0.4);
+                    break;
+                case 'special':
+                    damage = gameState.player.attack * (1.2 + Math.random() * 0.6);
+                    specialMoveName = gameState.player.special;
+                    showSpecialEffect('special', gameState.player.special);
+                    break;
+                case 'ultimate':
+                    damage = gameState.player.attack * (1.8 + Math.random() * 0.8);
+                    specialMoveName = gameState.player.ultimate;
+                    showSpecialEffect('ultimate', gameState.player.ultimate);
+                    break;
+                case 'defense':
+                    gameState.isDefending = true;
+                    specialMoveName = '防御態勢';
+                    break;
+            }
+
+            // 顯示特殊招式名稱
+            if (specialMoveName) {
+                const specialMoveNameElement = document.getElementById('special-move-name');
+                specialMoveNameElement.textContent = specialMoveName;
+                specialMoveNameElement.style.opacity = '1';
+                specialMoveNameElement.style.left = '50%';
+                specialMoveNameElement.style.top = '40%';
+                specialMoveNameElement.style.transform = 'translate(-50%, -50%)';
+
+                setTimeout(() => {
+                    specialMoveNameElement.style.opacity = '0';
+                }, 1500);
+            }
+
+            // 計算實際傷害（考慮敵人防禦）
+            const actualDamage = Math.max(1, Math.floor(damage - gameState.enemy.defense * 0.5));
+
+            // 減少敵人血量
+            if (attackType !== 'defense') {
+                gameState.enemy.currentHealth -= actualDamage;
+                gameState.enemy.currentHealth = Math.max(0, gameState.enemy.currentHealth);
+
+                // 更新敵人血量條
+                const enemyHealthPercentage = (gameState.enemy.currentHealth / gameState.enemy.health) * 100;
+                document.getElementById('enemy-health').style.width = `${enemyHealthPercentage}%`;
+
+                // 敵人受傷動畫
+                const enemyCharacter = document.getElementById('enemy-character');
+                enemyCharacter.style.filter = 'brightness(2)';
+                setTimeout(() => {
+                    enemyCharacter.style.filter = 'brightness(1)';
+                }, 200);
+            }
+
+            // 檢查遊戲是否結束
+            if (gameState.enemy.currentHealth <= 0) {
+                endGame(true);
+                return;
+            }
+
+            // 敵人反擊
+            setTimeout(() => {
+                enemyAttack(gameState);
+            }, 1000);
+        }
+
+        // 敵人攻擊
+        function enemyAttack(gameState) {
+            // 隨機選擇攻擊類型
+            const attackTypes = ['normal', 'special', 'ultimate'];
+            const attackType = attackTypes[Math.floor(Math.random() * attackTypes.length)];
+
+            let damage = 0;
+            let specialMoveName = '';
+
+            // 根據攻擊類型計算傷害
+            switch (attackType) {
+                case 'normal':
+                    damage = gameState.enemy.attack * (0.8 + Math.random() * 0.4);
+                    break;
+                case 'special':
+                    damage = gameState.enemy.attack * (1.2 + Math.random() * 0.6);
+                    specialMoveName = gameState.enemy.special;
+                    showSpecialEffect('enemy-special', gameState.enemy.special);
+                    break;
+                case 'ultimate':
+                    damage = gameState.enemy.attack * (1.8 + Math.random() * 0.8);
+                    specialMoveName = gameState.enemy.ultimate;
+                    showSpecialEffect('enemy-ultimate', gameState.enemy.ultimate);
+                    break;
+            }
+
+            // 顯示特殊招式名稱
+            if (specialMoveName) {
+                const specialMoveNameElement = document.getElementById('special-move-name');
+                specialMoveNameElement.textContent = specialMoveName;
+                specialMoveNameElement.style.opacity = '1';
+                specialMoveNameElement.style.left = '50%';
+                specialMoveNameElement.style.top = '40%';
+                specialMoveNameElement.style.transform = 'translate(-50%, -50%)';
+
+                setTimeout(() => {
+                    specialMoveNameElement.style.opacity = '0';
+                }, 1500);
+            }
+
+            // 如果玩家處於防禦狀態，減少傷害
+            if (gameState.isDefending) {
+                damage *= 0.5;
+                gameState.isDefending = false;
+            }
+
+            // 計算實際傷害（考慮玩家防禦）
+            const actualDamage = Math.max(1, Math.floor(damage - gameState.player.defense * 0.5));
+
+            // 減少玩家血量
+            gameState.player.currentHealth -= actualDamage;
+            gameState.player.currentHealth = Math.max(0, gameState.player.currentHealth);
+
+            // 更新玩家血量條
+            const playerHealthPercentage = (gameState.player.currentHealth / gameState.player.health) * 100;
+            document.getElementById('player-health').style.width = `${playerHealthPercentage}%`;
+
+            // 玩家受傷動畫
+            const playerCharacter = document.getElementById('player-character');
+            playerCharacter.style.filter = 'brightness(2)';
+            setTimeout(() => {
+                playerCharacter.style.filter = 'brightness(1)';
+            }, 200);
+
+            // 檢查遊戲是否結束
+            if (gameState.player.currentHealth <= 0) {
+                endGame(false);
+            }
+        }
+
+        // 顯示特殊效果
+        function showSpecialEffect(type, moveName) {
+            const battleArea = document.querySelector('.battle-area');
+
+            switch (type) {
+                case 'special':
+                    // 根據不同的招式名稱顯示不同的效果
+                    if (moveName === 'かめはめ波') {
+                        // 龜派氣功效果
+                        const energyBall = document.createElement('div');
+                        energyBall.className = 'energy-ball';
+                        energyBall.style.width = '30px';
+                        energyBall.style.height = '30px';
+                        energyBall.style.left = '100px';
+                        energyBall.style.top = '200px';
+                        battleArea.appendChild(energyBall);
+
+                        setTimeout(() => {
+                            energyBall.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            energyBall.style.left = '600px';
+                            energyBall.style.width = '50px';
+                            energyBall.style.height = '50px';
+                            energyBall.style.transition = 'left 0.5s ease, width 0.5s ease, height 0.5s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            energyBall.style.opacity = '0';
+                        }, 700);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(energyBall);
+                        }, 1000);
+                    } else if (moveName === 'ギャリック砲') {
+                        // 加力克砲效果
+                        const galickGun = document.createElement('div');
+                        galickGun.className = 'kamehameha';
+                        galickGun.style.width = '20px';
+                        galickGun.style.height = '40px';
+                        galickGun.style.left = '120px';
+                        galickGun.style.top = '200px';
+                        galickGun.style.background = 'linear-gradient(90deg, rgba(128,0,128,1) 0%, rgba(255,255,255,1) 50%, rgba(128,0,128,1) 100%)';
+                        galickGun.style.boxShadow = '0 0 20px #800080, 0 0 40px #800080';
+                        battleArea.appendChild(galickGun);
+
+                        setTimeout(() => {
+                            galickGun.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            galickGun.style.width = '500px';
+                            galickGun.style.height = '60px';
+                            galickGun.style.transition = 'width 0.5s ease, height 0.5s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            galickGun.style.opacity = '0';
+                        }, 1000);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(galickGun);
+                        }, 1500);
+                    } else if (moveName === '魔貫光殺砲') {
+                        // 魔貫光殺砲效果
+                        const makankosappo = document.createElement('div');
+                        makankosappo.className = 'makankosappo';
+                        makankosappo.style.width = '20px';
+                        makankosappo.style.height = '20px';
+                        makankosappo.style.left = '120px';
+                        makankosappo.style.top = '200px';
+                        battleArea.appendChild(makankosappo);
+
+                        setTimeout(() => {
+                            makankosappo.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            makankosappo.style.width = '500px';
+                            makankosappo.style.height = '20px';
+                            makankosappo.style.transition = 'width 0.3s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            makankosappo.style.opacity = '0';
+                        }, 800);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(makankosappo);
+                        }, 1000);
+                    } else {
+                        // 默認能量球效果
+                        const energyBall = document.createElement('div');
+                        energyBall.className = 'energy-ball';
+                        energyBall.style.width = '30px';
+                        energyBall.style.height = '30px';
+                        energyBall.style.left = '100px';
+                        energyBall.style.top = '200px';
+                        battleArea.appendChild(energyBall);
+
+                        setTimeout(() => {
+                            energyBall.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            energyBall.style.left = '600px';
+                            energyBall.style.width = '50px';
+                            energyBall.style.height = '50px';
+                            energyBall.style.transition = 'left 0.5s ease, width 0.5s ease, height 0.5s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            energyBall.style.opacity = '0';
+                        }, 700);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(energyBall);
+                        }, 1000);
+                    }
+                    break;
+
+                case 'ultimate':
+                    // 根據不同的必殺技名稱顯示不同的效果
+                    if (moveName === '元気玉') {
+                        // 元氣彈效果
+                        const spiritBomb = document.createElement('div');
+                        spiritBomb.className = 'energy-ball';
+                        spiritBomb.style.width = '50px';
+                        spiritBomb.style.height = '50px';
+                        spiritBomb.style.left = '100px';
+                        spiritBomb.style.top = '150px';
+                        spiritBomb.style.background = 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,191,255,1) 50%, rgba(0,0,139,1) 100%)';
+                        spiritBomb.style.boxShadow = '0 0 30px #00bfff, 0 0 60px #00bfff';
+                        battleArea.appendChild(spiritBomb);
+
+                        setTimeout(() => {
+                            spiritBomb.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            spiritBomb.style.width = '150px';
+                            spiritBomb.style.height = '150px';
+                            spiritBomb.style.transition = 'width 1s ease, height 1s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            spiritBomb.style.left = '600px';
+                            spiritBomb.style.transition = 'left 0.5s ease';
+                        }, 1200);
+
+                        setTimeout(() => {
+                            spiritBomb.style.opacity = '0';
+                        }, 1700);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(spiritBomb);
+                        }, 2000);
+                    } else if (moveName === 'ファイナルフラッシュ') {
+                        // 終極閃光效果
+                        const finalFlash = document.createElement('div');
+                        finalFlash.className = 'final-flash';
+                        finalFlash.style.width = '20px';
+                        finalFlash.style.height = '100px';
+                        finalFlash.style.left = '120px';
+                        finalFlash.style.top = '180px';
+                        battleArea.appendChild(finalFlash);
+
+                        setTimeout(() => {
+                            finalFlash.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            finalFlash.style.width = '600px';
+                            finalFlash.style.height = '150px';
+                            finalFlash.style.transition = 'width 0.3s ease, height 0.3s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            finalFlash.style.opacity = '0';
+                        }, 1000);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(finalFlash);
+                        }, 1500);
+                    } else if (moveName === 'デスボール') {
+                        // 死亡球效果
+                        const deathBall = document.createElement('div');
+                        deathBall.className = 'energy-ball';
+                        deathBall.style.width = '40px';
+                        deathBall.style.height = '40px';
+                        deathBall.style.left = '100px';
+                        deathBall.style.top = '180px';
+                        deathBall.style.background = 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 50%, rgba(139,0,0,1) 100%)';
+                        deathBall.style.boxShadow = '0 0 30px #ff0000, 0 0 60px #ff0000';
+                        battleArea.appendChild(deathBall);
+
+                        setTimeout(() => {
+                            deathBall.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            deathBall.style.width = '100px';
+                            deathBall.style.height = '100px';
+                            deathBall.style.transition = 'width 0.5s ease, height 0.5s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            deathBall.style.left = '600px';
+                            deathBall.style.transition = 'left 0.5s ease';
+                        }, 700);
+
+                        setTimeout(() => {
+                            deathBall.style.opacity = '0';
+                        }, 1200);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(deathBall);
+                        }, 1500);
+                    } else {
+                        // 默認龜派氣功效果
+                        const kamehameha = document.createElement('div');
+                        kamehameha.className = 'kamehameha';
+                        kamehameha.style.width = '20px';
+                        kamehameha.style.height = '40px';
+                        kamehameha.style.left = '120px';
+                        kamehameha.style.top = '200px';
+                        battleArea.appendChild(kamehameha);
+
+                        setTimeout(() => {
+                            kamehameha.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            kamehameha.style.width = '500px';
+                            kamehameha.style.height = '80px';
+                            kamehameha.style.transition = 'width 0.5s ease, height 0.5s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            kamehameha.style.opacity = '0';
+                        }, 1000);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(kamehameha);
+                        }, 1500);
+                    }
+                    break;
+
+                case 'enemy-special':
+                    // 敵人特殊攻擊效果
+                    if (moveName === 'デスビーム') {
+                        // 死亡光束效果
+                        const deathBeam = document.createElement('div');
+                        deathBeam.className = 'death-beam';
+                        deathBeam.style.width = '20px';
+                        deathBeam.style.height = '10px';
+                        deathBeam.style.right = '120px';
+                        deathBeam.style.top = '200px';
+                        battleArea.appendChild(deathBeam);
+
+                        setTimeout(() => {
+                            deathBeam.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            deathBeam.style.width = '500px';
+                            deathBeam.style.transition = 'width 0.3s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            deathBeam.style.opacity = '0';
+                        }, 800);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(deathBeam);
+                        }, 1000);
+                    } else {
+                        // 默認敵人能量球效果
+                        const enemyEnergyBall = document.createElement('div');
+                        enemyEnergyBall.className = 'energy-ball';
+                        enemyEnergyBall.style.width = '30px';
+                        enemyEnergyBall.style.height = '30px';
+                        enemyEnergyBall.style.left = '600px';
+                        enemyEnergyBall.style.top = '200px';
+                        battleArea.appendChild(enemyEnergyBall);
+
+                        setTimeout(() => {
+                            enemyEnergyBall.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            enemyEnergyBall.style.left = '100px';
+                            enemyEnergyBall.style.width = '50px';
+                            enemyEnergyBall.style.height = '50px';
+                            enemyEnergyBall.style.transition = 'left 0.5s ease, width 0.5s ease, height 0.5s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            enemyEnergyBall.style.opacity = '0';
+                        }, 700);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(enemyEnergyBall);
+                        }, 1000);
+                    }
+                    break;
+
+                case 'enemy-ultimate':
+                    // 敵人必殺技效果
+                    if (moveName === 'デスボール') {
+                        // 死亡球效果
+                        const deathBall = document.createElement('div');
+                        deathBall.className = 'energy-ball';
+                        deathBall.style.width = '40px';
+                        deathBall.style.height = '40px';
+                        deathBall.style.right = '100px';
+                        deathBall.style.top = '180px';
+                        deathBall.style.background = 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,0,0,1) 50%, rgba(139,0,0,1) 100%)';
+                        deathBall.style.boxShadow = '0 0 30px #ff0000, 0 0 60px #ff0000';
+                        battleArea.appendChild(deathBall);
+
+                        setTimeout(() => {
+                            deathBall.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            deathBall.style.width = '100px';
+                            deathBall.style.height = '100px';
+                            deathBall.style.transition = 'width 0.5s ease, height 0.5s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            deathBall.style.right = '600px';
+                            deathBall.style.transition = 'right 0.5s ease';
+                        }, 700);
+
+                        setTimeout(() => {
+                            deathBall.style.opacity = '0';
+                        }, 1200);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(deathBall);
+                        }, 1500);
+                    } else {
+                        // 默認敵人終極閃光效果
+                        const finalFlash = document.createElement('div');
+                        finalFlash.className = 'final-flash';
+                        finalFlash.style.width = '20px';
+                        finalFlash.style.height = '40px';
+                        finalFlash.style.right = '120px';
+                        finalFlash.style.top = '200px';
+                        battleArea.appendChild(finalFlash);
+
+                        setTimeout(() => {
+                            finalFlash.style.opacity = '1';
+                        }, 100);
+
+                        setTimeout(() => {
+                            finalFlash.style.width = '500px';
+                            finalFlash.style.height = '80px';
+                            finalFlash.style.transition = 'width 0.5s ease, height 0.5s ease';
+                        }, 200);
+
+                        setTimeout(() => {
+                            finalFlash.style.opacity = '0';
+                        }, 1000);
+
+                        setTimeout(() => {
+                            battleArea.removeChild(finalFlash);
+                        }, 1500);
+                    }
+                    break;
+            }
+        }
+
+        // 結束遊戲
+        function endGame(isPlayerWin) {
+            const gameOver = document.getElementById('game-over');
+            const winnerText = document.getElementById('winner-text');
+
+            if (isPlayerWin) {
+                winnerText.textContent = '勝利！';
+            } else {
+                winnerText.textContent = '敗北！';
+            }
+
+            gameOver.style.opacity = '1';
+            gameOver.style.pointerEvents = 'auto';
+        }
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'96498e79675d8bcd',t:'MTc1MzQyNDQ4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
