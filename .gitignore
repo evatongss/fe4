@@ -1,10 +1,7 @@
-mp4/
-*.mp4
+~/Documents/fe4/**/*.mp4
 
-pdf/
-*.pdf
+~/Documents/fe4/**/*.pdf
 
-img/
-*.png
-*.jpeg
-*.jpg
+~/Documents/fe4/**/*.*.png
+~/Documents/fe4/**/*.*.jpeg
+~/Documents/fe4/**/*.*.jpg
