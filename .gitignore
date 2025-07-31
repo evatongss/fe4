@@ -1,4 +1,11 @@
-mp4
-pdf
-img
+mp4/
+*.mp4
+
+pdf/
+*.pdf
+
+img/
+*.png
+*.jpeg
+*.jpg
 
