@@ -1,10 +1,10 @@
-# mp4
+mp4/
 *.mp4
 
-# pdf
+pdf/
 *.pdf
 
-# img
+img/
 *.png
 *.jpeg
 *.jpg
