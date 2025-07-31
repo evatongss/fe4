@@ -1,99 +1,205 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant-HK">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="探索世界旅行社 - 專業旅遊服務，提供獨特難忘的旅行體驗">
     <title>探索世界 - 專業旅遊服務</title>
     <link rel="stylesheet" href="/Documents/fe4/css/css dir/ttr.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/1.1.0/font-awesome-animation.min.css" 
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer">
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
 
 <body>
     <!-- 導航欄 -->
     <nav class="navbar">
-        <div class="container navbar-flex">
-            <a href="#" class="logo">探索世界</a>
-            <div class="icon-menu">
-                <ul class="icon-list">
-                    <li class="icon-item">
-                        <a href="http://facebook.com" aria-label="Facebook">
-                            <i class="fa-brands fa-facebook"></i>
-                        </a>    
-                    </li>
-                    <li class="icon-item">
-                        <a href="#" aria-label="Twitter">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                    </li>    
-                    <li class="icon-item">
-                        <a href="#" aria-label="Instagram">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                    </li>
-                </ul>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-globe-asia"></i>探索世界
+            </a>
+            
+            <div class="hamburger-menu">
+                <button class="hamburger-btn" aria-label="開啟導航選單">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <!-- 移動版導航 -->
+                <div class="mobile-nav">
+                    <span class="close-btn">&times;</span>
+                    
+                    <ul class="mobile-nav-list">
+                        <li class="mobile-nav-item">
+                            <a href="#">首頁</a>
+                        </li>
+                        <li class="mobile-nav-item">
+                            <a href="#about">關於我們</a>
+                        </li>
+                        <li class="mobile-nav-item">
+                            <a href="#services">旅遊行程</a>
+                        </li>
+                        <li class="mobile-nav-item">
+                            <a href="#">常見問題</a>
+                        </li>
+                        <li class="mobile-nav-item">
+                            <a href="#">聯絡我們</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="social-media-container">
+                        <ul class="social-media-list">
+                            <li class="social-media-item">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="social-media-item">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="social-media-item">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+            
+            <ul class="nav-links">
+                <li><a href="#">首頁</a></li>
+                <li><a href="#about">關於我們</a></li>
+                <li><a href="#services">旅遊行程</a></li>
+                <li><a href="#">常見問題</a></li>
+                <li><a href="#">聯絡我們</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- 英雄區 -->
+    <!-- 英雄區域 -->
     <section class="hero">
         <div class="container">
             <h1>繼續探索這個美麗的世界</h1>
             <p>我們提供最專業的旅遊服務，帶您體驗世界各地的文化與美景</p>    
-            <a href="#services" class="btn">查看行程</a>
+            <div class="hero-btns">
+                <a href="#services" class="btn">查看行程</a>
+                <a href="#about" class="btn btn-outline">關於我們</a>
+            </div>
         </div>    
     </section>
 
     <!-- 關於我們 -->
-    <section class="about" id="about">
+    <section class="about section" id="about">
         <div class="container">
-            <h2>關於<span class="text-secondary">我們</span></h2>
+            <div class="section-title">
+                <h2>關於<span class="text-primary">我們</span></h2>
+            </div>
             <div class="about-content">
-                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="旅遊團隊">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                    alt="探索世界旅行社專業團隊" 
+                    loading="lazy">
+                </div>
                 <div class="about-text">
                     <h3>我們的使命</h3>
                     <p>成立於2010年，探索世界旅行社致力於提供獨特而難忘的旅行體驗。我們的團隊由經驗豐富的旅遊專家組成，他們對世界各地的文化、歷史和自然景觀有著深入的了解。</p>
                     <p>我們相信旅行不僅僅是觀光，而是深入了解不同文化、結交新朋友和創造終生難忘回憶的機會。</p>
                     <p>無論您是尋求冒險、放鬆還是文化沉浸，我們都能為您量身定制完美的旅程。</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-passport"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>專業簽證服務</h4>
+                                <p>協助辦理各國簽證，節省您的寶貴時間</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>24/7 客戶支援</h4>
+                                <p>旅行途中隨時提供協助，解決您的問題</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 服務項目 -->
-    <section class="services" id="services">
+    <!-- 旅遊行程 -->
+    <section class="destinations section" id="services">
         <div class="container">
-            <h2>熱門旅遊行程</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="日本京都">
-                    <div class="service-info">
+            <div class="section-title">
+                <h2>熱門<span class="text-primary">旅遊行程</span></h2>
+            </div>
+            <div class="destinations-grid">
+                <div class="destination-card">
+                    <div class="badge">熱賣</div>
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                        alt="日本京都金閣寺風景" 
+                        loading="lazy">
+                    </div>
+                    <div class="card-content">
                         <h3>日本京都文化之旅</h3>
                         <p>探索京都的古寺、茶道和傳統文化，體驗真正的日本精神。</p>
-                        <p class="service-price">$ 8,000 起</p>
+                        <div class="card-meta">
+                            <span class="price">$8,000 起</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                        </div>
                         <a href="#" class="btn">詳細資訊</a>
                     </div>
                 </div>
                 
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="義大利托斯卡尼">
-                    <div class="service-info">
+                <div class="destination-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                        alt="義大利托斯卡尼葡萄園風景" 
+                        loading="lazy">
+                    </div>
+                    <div class="card-content">
                         <h3>義大利托斯卡尼美食之旅</h3>
                         <p>品嚐世界級葡萄酒和美食，漫步在迷人的鄉村風景中。</p>
-                        <p class="service-price">$ 15,500 起</p>
+                        <div class="card-meta">
+                            <span class="price">$15,500 起</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </div>
                         <a href="#" class="btn">詳細資訊</a>
                     </div>
                 </div>
                 
-                <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="秘魯馬丘比丘">
-                    <div class="service-info">
+                <div class="destination-card">
+                    <div class="badge">新行程</div>
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                        alt="秘魯馬丘比丘遺跡全景" 
+                        loading="lazy">
+                    </div>
+                    <div class="card-content">
                         <h3>秘魯馬丘比丘探險</h3>
                         <p>探索印加帝國的遺跡，體驗安第斯山脈的壯麗景色。</p>
-                        <p class="service-price">$ 12,900 起</p>
+                        <div class="card-meta">
+                            <span class="price">$12,900 起</span>
+                            <span class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                        </div>
                         <a href="#" class="btn">詳細資訊</a>
                     </div>
                 </div>
@@ -101,35 +207,101 @@
         </div>
     </section>
 
-    <!-- 頁尾 -->
-    <footer>
+    <!-- 聯絡我們 -->
+    <section class="contact section">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
+            <div class="section-title">
+                <h2>聯絡<span class="text-primary">我們</span></h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>有任何問題嗎？</h3>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>地址</h4>
+                            <p>香港觀塘開源道王子大廈801室</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>電話</h4>
+                            <p><a href="tel:+85212345678">852-1234-5678</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-text">
+                            <h4>電子郵件</h4>
+                            <p><a href="mailto:info@exploreworld.com">info@exploreworld.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="電子郵件" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="電話號碼">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="您的訊息" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">發送訊息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
                     <h3>關於我們</h3>
                     <p>探索世界提供全球各地的優質旅遊服務，讓您的每一次旅行都成為難忘的回憶。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>聯絡我們</h3>
-                                      
-                    
-                </div>
-                
-                <div class="footer-section">
+                <div class="footer-col">
                     <h3>快速連結</h3>
-                    <a href="#">首頁</a>
-                    <a href="#about">關於我們</a>
-                    <a href="#services">旅遊行程</a>
-                    <a href="#">常見問題</a>
+                    <ul class="footer-links">
+                        <li><a href="#">首頁</a></li>
+                        <li><a href="#about">關於我們</a></li>
+                        <li><a href="#services">旅遊行程</a></li>
+                        <li><a href="#">常見問題</a></li>
+                        <li><a href="#">聯絡我們</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>聯絡資訊</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> 香港觀塘開源道王子大廈801室</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+85212345678">852-1234-5678</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@exploreworld.com">info@exploreworld.com</a></li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>&copy; 2023 探索世界 版權所有</p>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> 探索世界旅行社 版權所有</p>
             </div>
         </div>
     </footer>
-    <script src="/Documents/fe4/js/ttr.js"></script>
-</body>
-</html>
