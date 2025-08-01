@@ -1,21 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亞洲旅遊探索 - 日本</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
-    <h1>中國旅遊</h1>
-    <p>中國幅員遼闊、歷史悠久，是世界四大文明古國之一。著名景點有萬里長城、故宮、麗江古城等。</p>
-    <h2>必遊景點</h2>
-    <ol>
-        <li>北京故宮</li>
-        <li>萬里長城</li>
-        <li>西安兵馬俑</li>
-        <li>桂林山水</li>
-        <li>張家界國家森林公園</li>
-    </ol>
-    <a href="index.html">返回首頁</a> |
-    <a href="japan.html">日本</a> |
-    <a href="malaysia.html">馬來西亞</a> |
-    <a href="thailand.html">泰國</a> |
-    <a href="singapore.html">新加坡</a>
-</body>
+    <header>
+        <div class="logo">
+            <h1>亞洲旅遊探索</h1>
+            <p>發現東方之美</p>
+        </div>
+        <nav>
+            <ul>
+                 <li><a href="/Documents/fe4/html/ttours/tours1.html">首頁</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours2.html">中國</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours3.html">日本</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours4.html">泰國</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours5.html">馬來西亞</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <main>
+        <section class="country-hero" style="background-image: url('../images/japan-hero.jpg');">
+            <div class="hero-overlay">
+                <h1>日本</h1>
+                <p>傳統與現代的完美融合</p>
+            </div>
+        </section>
+
+        <section class="country-intro">
+            <div class="intro-text">
+                <h2>探索日本</h2>
+                <p>日本是一個將古老傳統與尖端科技完美融合的國家。從京都的寺廟到東京的霓虹燈，從北海道的自然風光到沖繩的熱帶海灘，日本提供了豐富多樣的旅遊體驗。</p>
+                <p>日本文化獨特而精緻，茶道、花道、武士道等傳統文化至今仍深深影響著日本人的生活方式。同時，日本的動漫、電子遊戲和流行音樂等現代文化也在全球擁有廣泛影響力。</p>
+            </div>
+            <div class="intro-image">
+                <img src="../images/japan-map.jpg" alt="日本地圖">
+            </div>
+        </section>
+
+        <section class="highlights">
+            <h2>日本旅遊亮點</h2>
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <img src="../images/mt-fuji.jpg" alt="富士山">
+                    <h3>富士山</h3>
+                    <p>日本最高峰，被視為聖山，是日本文化的象徵，四季景色各異，尤以冬季雪景最為壯觀。</p>
+                    <button class="more-info" data-target="mt-fuji">更多資訊</button>
+                </div>
+                <div class="highlight-card">
+                    <img src="../images/kyoto-temple.jpg" alt="京都金閣寺">
+                    <h3>京都古都</h3>
+                    <p>日本文化的心臟地帶，擁有17處世界文化遺產，包括金閣寺、清水寺等著名寺廟。</p>
+                    <button class="more-info" data-target="kyoto">更多資訊</button>
+                </div>
+                <div class="highlight-card">
+                    <img src="../images/tokyo-shibuya.jpg" alt="東京澀谷">
+                    <h3>東京都市</h3>
+                    <p>世界最大的都市區之一，融合了傳統與現代，從皇居到秋葉原，每個街區都有獨特魅力。</p>
+                    <button class="more-info" data-target="tokyo">更多資訊</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="culture-section">
+            <h2>日本文化</h2>
+            <div class="culture-content">
+                <div class="culture-text">
+                    <p>日本文化以其精緻和獨特性聞名於世。傳統文化如茶道、花道、能劇、歌舞伎等，都體現了日本人對細節的極致追求和美學理念。</p>
+                    <p>日本料理被聯合國教科文組織列為世界非物質文化遺產，壽司、天婦羅、懷石料理等不僅是美食，更是一種藝術形式。同時，拉麵、章魚燒等街頭小吃也深受遊客喜愛。</p>
+                    <p>日本的節日文化豐富多彩，櫻花季、盂蘭盆節、七五三等節日都有獨特的慶祝方式和習俗。</p>
+                </div>
+                <div class="culture-image">
+                    <img src="../images/japanese-culture.jpg" alt="日本文化">
+                </div>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <h2>日本旅遊視頻</h2>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/2V6S0H9UQ7E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="travel-tips">
+            <h2>旅遊小貼士</h2>
+            <div class="tips-container">
+                <div class="tip">
+                    <i class="fas fa-passport"></i>
+                    <h3>簽證要求</h3>
+                    <p>許多國家公民可免簽短期停留，但需確認具體規定。台灣護照持有者需辦理簽證。</p>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-language"></i>
+                    <h3>語言</h3>
+                    <p>官方語言為日語，大城市和旅遊區英語標誌較多，但會簡單日語問候語會很有幫助。</p>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>貨幣</h3>
+                    <p>使用日元(JPY)，現金仍廣泛使用，但信用卡在大城市接受度高。</p>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-train"></i>
+                    <h3>交通</h3>
+                    <p>公共交通系統極為發達，JR Pass可節省長途交通費用，地鐵系統複雜但高效。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="interactive-quiz">
+            <h2>日本知識小測驗</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <p>1. 日本的國花是什麼？</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option">A. 玫瑰</button>
+                        <button class="quiz-option correct">B. 櫻花</button>
+                        <button class="quiz-option">C. 菊花</button>
+                        <button class="quiz-option">D. 牡丹</button>
+                    </div>
+                </div>
+                <div class="quiz-question">
+                    <p>2. 以下哪個不是日本的三大名城？</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option">A. 姬路城</button>
+                        <button class="quiz-option">B. 名古屋城</button>
+                        <button class="quiz-option correct">C. 大阪城</button>
+                        <button class="quiz-option">D. 熊本城</button>
+                    </div>
+                </div>
+                <div class="quiz-result">
+                    <p>你的得分: <span id="quiz-score">0</span>/2</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>關於我們</h3>
+                <p>我們致力於提供最優質的亞洲旅遊資訊，幫助旅客深度體驗東方文化。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速連結</h3>
+                <ul>
+                     <li><a href="/Documents/fe4/html/ttours/tours1.html">首頁</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours2.html">中國</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours3.html">日本</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours4.html">泰國</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours5.html">馬來西亞</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>聯絡我們</h3>
+                <p>Email: info@asiatravel.com</p>
+                <p>電話: +886 2 1234 5678</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 亞洲旅遊探索. 保留所有權利.</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
 </html>

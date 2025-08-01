@@ -1,28 +1,180 @@
-Copy
 <!DOCTYPE html>
-<html lang="zh-Hant">
-
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>日本旅遊</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亞洲旅遊探索 - 中國</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
-    <h1>日本旅遊</h1>
-    <p>日本擁有豐富的歷史、精緻的美食和壯麗的自然風光。熱門景點包括東京、大阪、京都和北海道。</p>
-    <h2>必遊景點</h2>
-    <ol>
-        <li>東京晴空塔</li>
-        <li>京都金閣寺</li>
-        <li>大阪城</li>
-        <li>富士山</li>
-        <li>北海道札幌雪祭</li>
-    </ol>
-    <a href="index.html">返回首頁</a> |
-    <a href="china.html">中國</a> |
-    <a href="malaysia.html">馬來西亞</a> |
-    <a href="thailand.html">泰國</a> |
-    <a href="singapore.html">新加坡</a>
-</body>
+    <header>
+        <div class="logo">
+            <h1>亞洲旅遊探索</h1>
+            <p>發現東方之美</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/Documents/fe4/html/ttours/tours1.html">首頁</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours2.html">中國</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours3.html">日本</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours4.html">泰國</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours5.html">馬來西亞</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <main>
+        <section class="country-hero" style="background-image: url('../images/china-hero.jpg');">
+            <div class="hero-overlay">
+                <h1>中國</h1>
+                <p>五千年文明的搖籃</p>
+            </div>
+        </section>
+
+        <section class="country-intro">
+            <div class="intro-text">
+                <h2>探索中國</h2>
+                <p>中國，這個擁有五千年歷史的文明古國，是世界上現存最古老的文明之一。從萬里長城到紫禁城，從兵馬俑到江南水鄉，中國的歷史文化遺產豐富多彩。現代中國則展現了驚人的發展速度，上海的天際線和深圳的科技創新令人驚嘆。</p>
+                <p>中國幅員遼闊，自然景觀多樣，從青藏高原的雪山到桂林的喀斯特地貌，從內蒙古的草原到海南的熱帶海灘，每一處都有獨特的魅力。</p>
+            </div>
+            <div class="intro-image">
+                <img src="../images/china-map.jpg" alt="中國地圖">
+            </div>
+        </section>
+
+        <section class="highlights">
+            <h2>中國旅遊亮點</h2>
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <img src="../images/great-wall.jpg" alt="長城">
+                    <h3>萬里長城</h3>
+                    <p>這項人類歷史上最偉大的建築工程之一，全長超過2萬公里，是中國古代防禦工程的代表。</p>
+                    <button class="more-info" data-target="great-wall">更多資訊</button>
+                </div>
+                <div class="highlight-card">
+                    <img src="../images/terracotta.jpg" alt="兵馬俑">
+                    <h3>兵馬俑</h3>
+                    <p>秦始皇陵的陪葬坑，發現了數千個與真人大小相仿的陶俑，被譽為"世界第八大奇跡"。</p>
+                    <button class="more-info" data-target="terracotta">更多資訊</button>
+                </div>
+                <div class="highlight-card">
+                    <img src="../images/forbidden-city.jpg" alt="紫禁城">
+                    <h3>紫禁城</h3>
+                    <p>明清兩代的皇家宮殿，世界上現存規模最大、保存最完整的木質結構古建築群。</p>
+                    <button class="more-info" data-target="forbidden-city">更多資訊</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="culture-section">
+            <h2>中國文化</h2>
+            <div class="culture-content">
+                <div class="culture-text">
+                    <p>中國文化源遠流長，影響了整個東亞地區。儒家思想、道家哲學和佛教構成了中國傳統文化的三大支柱。書法、國畫、京劇、茶藝等都是中國傳統文化的瑰寶。</p>
+                    <p>中國的飲食文化舉世聞名，八大菜系各具特色，從精緻的粵菜到麻辣的川菜，從清淡的浙菜到濃郁的魯菜，每一種都體現了中國人對美食的追求。</p>
+                    <p>傳統節日如春節、中秋節、端午節等，都充滿了豐富的文化內涵和民俗活動。</p>
+                </div>
+                <div class="culture-image">
+                    <img src="../images/chinese-culture.jpg" alt="中國文化">
+                </div>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <h2>中國旅遊視頻</h2>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/1RAO1RG9Qd0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="travel-tips">
+            <h2>旅遊小貼士</h2>
+            <div class="tips-container">
+                <div class="tip">
+                    <i class="fas fa-passport"></i>
+                    <h3>簽證要求</h3>
+                    <p>大多數國家公民需要提前申請中國簽證，建議出發前至少一個月辦理。</p>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-language"></i>
+                    <h3>語言</h3>
+                    <p>官方語言為普通話，英語在大城市旅遊區基本通用，但學習幾句簡單中文會很有幫助。</p>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>貨幣</h3>
+                    <p>使用人民幣(RMB)，建議攜帶少量現金，大多數地方接受支付寶和微信支付。</p>
+                </div>
+                <div class="tip">
+                    <i class="fas fa-utensils"></i>
+                    <h3>飲食</h3>
+                    <p>中國飲食文化豐富，但水質不一，建議飲用瓶裝水，注意食物衛生。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="interactive-quiz">
+            <h2>中國知識小測驗</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <p>1. 中國現存最長的古城牆是哪一個？</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option">A. 北京城牆</button>
+                        <button class="quiz-option correct">B. 南京城牆</button>
+                        <button class="quiz-option">C. 西安城牆</button>
+                        <button class="quiz-option">D. 開封城牆</button>
+                    </div>
+                </div>
+                <div class="quiz-question">
+                    <p>2. 以下哪個不是中國的四大發明？</p>
+                    <div class="quiz-options">
+                        <button class="quiz-option">A. 造紙術</button>
+                        <button class="quiz-option">B. 印刷術</button>
+                        <button class="quiz-option correct">C. 瓷器</button>
+                        <button class="quiz-option">D. 指南針</button>
+                    </div>
+                </div>
+                <div class="quiz-result">
+                    <p>你的得分: <span id="quiz-score">0</span>/2</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>關於我們</h3>
+                <p>我們致力於提供最優質的亞洲旅遊資訊，幫助旅客深度體驗東方文化。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速連結</h3>
+                <ul>
+                    <li><a href="/Documents/fe4/html/ttours/tours1.html">首頁</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours2.html">中國</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours3.html">日本</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours4.html">泰國</a></li>
+                    <li><a href="/Documents/fe4/html/ttours/tours5.html">馬來西亞</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>聯絡我們</h3>
+                <p>Email: info@asiatravel.com</p>
+                <p>電話: +886 2 1234 5678</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 亞洲旅遊探索. 保留所有權利.</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
 </html>
