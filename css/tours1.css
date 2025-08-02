@@ -93,6 +93,52 @@ nav ul li a {
     text-overflow: ellipsis;
 }
 
+.nav-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50; /* 按鈕背景色 */
+        color: white; /* 文字顏色 */
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px; /* 圓角 */
+        margin: 0 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .nav-button:hover {
+        background-color: #45a049; /* 滑鼠懸停時的顏色 */
+    }
+    
+    .nav-button.active {
+        background-color: #2E7D32; /* 當前頁面按鈕顏色 */
+    }
+    
+    /* 保持原有header佈局 */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background-color: #f8f8f8;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    nav li {
+        margin: 0 5px;
+    }
+
 /* 响应式调整 */
 @media (max-width: 992px) {
     nav {
