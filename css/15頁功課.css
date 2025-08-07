@@ -450,3 +450,139 @@
             }
         }
     
+/* 漢堡按鈕樣式 */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 1001;
+}
+
+/* 導航容器 - 桌面版 */
+.nav-container {
+  transition: all 0.3s ease;
+}
+
+/* 移動版樣式 */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-container {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: #2c3e50;
+    z-index: 1000;
+    padding-top: 60px;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .nav-container.open {
+    left: 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  nav li {
+    margin: 5px 0;
+  }
+
+  nav a {
+    padding: 12px 15px;
+    border-radius: 5px;
+    display: block;
+  }
+
+  /* 點擊外部關閉選單的遮罩 */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+}/* 漢堡菜單樣式 */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 1001;
+}
+
+.nav-container {
+  transition: all 0.3s ease;
+}
+
+/* 移動版樣式 */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-container {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: #2c3e50;
+    z-index: 1000;
+    padding-top: 60px;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .nav-container.open {
+    left: 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  nav li {
+    margin: 5px 0;
+  }
+
+  nav a {
+    padding: 12px 15px;
+    border-radius: 5px;
+    display: block;
+  }
+
+  /* 點擊外部關閉選單的遮罩 */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+}
