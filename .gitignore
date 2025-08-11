@@ -36,3 +36,8 @@ img/
 *.jpeg
 *.jpg
 
+sample/
+*.*
+
+my-app/
+*.*
