@@ -25,13 +25,7 @@ dist-ssr
 
 
 
-mp4/
-*.mp4
-
-pdf/
-*.pdf
-
-img/
-*.png
-*.jpeg
-*.jpg
+# img/
+# *.png
+# *.jpeg
+# *.jpg
