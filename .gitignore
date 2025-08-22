@@ -29,3 +29,6 @@ dist-ssr
 # *.png
 # *.jpeg
 # *.jpg
+
+# Local Netlify folder
+.netlify
