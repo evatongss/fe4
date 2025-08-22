@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本精選旅遊指南</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="static/css/main.[hash].css" rel="stylesheet">
+        
+  <link rel="stylesheet" crossorigin href="/assets/index-HV5Tfu04.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>日本精選旅遊指南</span>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="/index.html"><i class="fas fa-home"></i> 首頁</a></li>
+            <li><a href="/東京.html"><i class="fas fa-train-subway"></i> 東京都</a></li>
+            <li><a href="/大阪.html"><i class="fas fa-utensils"></i> 大阪府</a></li>
+            <li><a href="/愛知.html"><i class="fas fa-car"></i> 愛知縣</a></li>
+            <li><a href="/京都.html"><i class="fas fa-torii-gate"></i> 京都府</a></li>
+            <li><a href="/北海.html"><i class="fas fa-snowflake"></i> 北海道</a></li>
+            <li><a href="/廣島.html"><i class="fas fa-dove"></i> 廣島縣</a></li>
+            <li><a href="/福岡.html"><i class="fas fa-umbrella-beach"></i> 福岡縣</a></li>
+            <li><a href="/德島.html"><i class="fas fa-water"></i> 德島縣</a></li>
+            <li><a href="/琦玉.html"><i class="fas fa-subway"></i> 琦玉縣</a></li>
+            <li><a href="/宮城.html"><i class="fas fa-tree"></i> 宮城縣</a></li>
+            <li><a href="/青森.html"><i class="fas fa-apple-alt"></i> 青森縣</a></li>
+            <li><a href="/石川.html"><i class="fas fa-fish"></i> 石川縣</a></li>
+            <li><a href="/岡山.html"><i class="fas fa-sun"></i> 岡山縣</a></li>
+            <li><a href="/兵庫.html"><i class="fas fa-landmark"></i> 兵庫縣</a></li>
+        </ul>
+    </nav>
+    
+    <div class="search-container">
+        <div class="search-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search" placeholder="搜尋都道府縣..." aria-label="搜尋都道府縣">
+        </div>
+    </div>
+    
+    <main>
+        <!-- 首頁內容 -->
+        <div id="home-page">
+            <h2 class="page-title">探索日本精選14都道府縣的魅力</h2>
+            
+            <!-- 地區篩選 -->
+            <div class="region-filter">
+                <button class="region-btn active" data-region="all">全部地區</button>
+                <button class="region-btn" data-region="hokkaido">北海道地區</button>
+                <button class="region-btn" data-region="tohoku">東北地區</button>
+                <button class="region-btn" data-region="kanto">關東地區</button>
+                <button class="region-btn" data-region="chubu">中部地區</button>
+                <button class="region-btn" data-region="kansai">關西地區</button>
+                <button class="region-btn" data-region="chugoku">中國地區</button>
+                <button class="region-btn" data-region="shikoku">四國地區</button>
+                <button class="region-btn" data-region="kyushu">九州地區</button>
+            </div>
+            
+            <div class="prefecture-grid">
+                <!-- 東京都 -->
+                <div class="prefecture-card" data-region="kanto">
+                    <div class="crest-above">
+                        <img src="data:image/png;base64,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" alt="東京都徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E6%9D%B1%E4%BA%AC%EF%BC%91-DCxZj9Ha.png" alt="東京都" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>東京都 <span class="japanese-name">(とうきょうと)</span></h2>
+                        <p>日本的首都，融合了現代與傳統文化。東京塔、淺草寺、澀谷十字路口等著名景點。購物天堂銀座、原宿，美食從壽司到拉麵應有盡有。</p>
+                        <a href="/東京.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+
+                <!-- 大阪府 -->
+                <div class="prefecture-card" data-region="kansai">
+                    <div class="crest-above">
+                        <img src="data:image/png;base64,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" alt="大阪府徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E5%A4%A7%E9%98%AA%EF%BC%91-Be4B_I25.png" alt="大阪府" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>大阪府 <span class="japanese-name">(おおさかふ)</span></h2>
+                        <p>以美食和購物聞名，被稱為"日本的廚房"。道頓堀、大阪城、環球影城等景點吸引無數遊客。章魚燒、大阪燒等街頭美食不可錯過。</p>
+                        <a href="/大阪.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 愛知縣 -->
+                <div class="prefecture-card" data-region="chubu">
+                    <div class="crest-above">
+                        <img src="data:image/png;base64,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" alt="愛知縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E6%84%9B%E7%9F%A51-hsnCIf3j.png" alt="愛知縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>愛知縣 <span class="japanese-name">(あいちけん)</span></h2>
+                        <p>名古屋是其主要城市，以名古屋城、熱田神宮和味噌豬排聞名。豐田汽車總部所在地，日本製造業的中心地帶。中部國際機場是重要的交通樞紐。</p>
+                        <a href="/愛知.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 京都府 -->
+                <div class="prefecture-card" data-region="kansai">
+                    <div class="crest-above">
+                        <img src="/assets/%E4%BA%AC%E9%83%BD-Cbafnqn4.png" alt="京都府徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E4%BA%AC%E9%83%BD%EF%BC%91-tyT6VGrP.png" alt="京都府" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>京都府 <span class="japanese-name">(きょうとふ)</span></h2>
+                        <p>日本傳統文化的代表城市，擁有17處世界文化遺產。金閣寺、清水寺、伏見稻荷大社等景點聞名遐邇。四季分明，春櫻秋楓景色絕美。</p>
+                        <a href="/京都.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 北海道 -->
+                <div class="prefecture-card" data-region="hokkaido">
+                    <div class="crest-above">
+                        <img src="/assets/%E5%8C%97%E6%B5%B7-DkywNrDU.png" alt="北海道徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E5%8C%97%E6%B5%B7%EF%BC%91-DBgrVp-D.png" alt="北海道" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>北海道 <span class="japanese-name">(ほっかいどう)</span></h2>
+                        <p>日本最北端的島嶼，以廣闊的自然景觀聞名。冬季滑雪、夏季花田、秋季美食，四季皆宜旅遊。札幌雪祭、富良野薰衣草田、函館夜景不可錯過。</p>
+                        <a href="/北海.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 廣島縣 -->
+                <div class="prefecture-card" data-region="chugoku">
+                    <div class="crest-above">
+                        <img src="/assets/%E5%BB%A3%E5%B3%B6-qnihhpN0.png" alt="廣島縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E5%BB%A3%E5%B3%B6%EF%BC%91-Cl-YVwNV.png" alt="廣島縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>廣島縣 <span class="japanese-name">(ひろしまけん)</span></h2>
+                        <p>和平紀念公園和原爆圓頂館見證歷史，宮島的嚴島神社是日本三景之一。廣島燒和牡蠣是當地特色美食，瀨戶內海的島嶼風光令人陶醉。</p>
+                        <a href="/廣島.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 福岡縣 -->
+                <div class="prefecture-card" data-region="kyushu">
+                    <div class="crest-above">
+                        <img src="/assets/%E7%A6%8F%E5%B2%A1-BlHyJiQ0.png" alt="福岡縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E7%A6%8F%E5%B2%A1%EF%BC%91-Dg6z8p7R.png" alt="福岡縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>福岡縣 <span class="japanese-name">(ふくおかけん)</span></h2>
+                        <p>九州門戶城市，博多拉麵發源地。擁有繁華的天神商圈、歷史悠久的太宰府天滿宮，以及能古島等自然景觀。屋台文化(路邊攤)是當地特色。</p>
+                        <a href="/福岡.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 德島縣 -->
+                <div class="prefecture-card" data-region="shikoku">
+                    <div class="crest-above">
+                        <img src="data:image/png;base64,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" alt="德島縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E5%BE%B7%E5%B3%B6%EF%BC%91-B2NMoxul.png" alt="德島縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>德島縣 <span class="japanese-name">(とくしまけん)</span></h2>
+                        <p>以阿波舞聞名，每年8月舉辦的阿波舞祭吸引數百萬遊客。鳴門海峽的漩渦是世界三大漩渦之一，祖谷溪的蔓橋是重要文化財。</p>
+                        <a href="/德島.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 琦玉縣 -->
+                <div class="prefecture-card" data-region="kanto">
+                    <div class="crest-above">
+                        <img src="/assets/%E7%90%A6%E7%8E%89-CCiS2XVA.png" alt="琦玉縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E7%90%A6%E7%8E%89%EF%BC%91-DonpHGZ-.png" alt="琦玉縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>琦玉縣 <span class="japanese-name">(さいたまけん)</span></h2>
+                        <p>東京的衛星城市，擁有鐵道博物館、嚕嚕米主題公園等親子景點。川越的"小江戶"保留了大量江戶時代建築，秩父地區的自然風光優美。</p>
+                        <a href="/琦玉.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 宮城縣 -->
+                <div class="prefecture-card" data-region="tohoku">
+                    <div class="crest-above">
+                        <img src="/assets/%E5%AE%AE%E5%9F%8E-pObZGNqe.png" alt="宮城縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E5%AE%AE%E5%9F%8E%EF%BC%91-CACPvScv.png" alt="宮城縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>宮城縣 <span class="japanese-name">(みやぎけん)</span></h2>
+                        <p>仙台市是東北最大城市，以伊達政宗和牛舌聞名。松島是日本三景之一，秋季的紅葉和冬季的雪景尤其美麗。2011年東日本大地震受災嚴重。</p>
+                        <a href="/宮城.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 青森縣 -->
+                <div class="prefecture-card" data-region="tohoku">
+                    <div class="crest-above">
+                        <img src="data:image/png;base64,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" alt="青森縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E9%9D%92%E6%A3%AE%EF%BC%91-B9xDqhS1.png" alt="青森縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>青森縣 <span class="japanese-name">(あおもりけん)</span></h2>
+                        <p>以蘋果和睡魔祭聞名，擁有世界自然遺產白神山地。弘前城的櫻花、奧入瀨溪流的楓葉、八甲田山的滑雪場都是著名景點。</p>
+                        <a href="/青森.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 石川縣 -->
+                <div class="prefecture-card" data-region="chubu">
+                    <div class="crest-above">
+                        <img src="data:image/png;base64,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" alt="石川縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E7%9F%B3%E5%B7%9D%EF%BC%91-BlwIWCLe.png" alt="石川縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>石川縣 <span class="japanese-name">(いしかわけん)</span></h2>
+                        <p>金澤市擁有日本三大名園之一的兼六園，加賀友禪和九谷燒等傳統工藝聞名。能登半島的海鮮和溫泉資源豐富，輪島朝市是日本三大朝市之一。</p>
+                        <a href="/石川.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 岡山縣 -->
+                <div class="prefecture-card" data-region="chugoku">
+                    <div class="crest-above">
+                        <img src="/assets/%E5%B2%A1%E5%B1%B1-Bj9PAT7n.png" alt="岡山縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E5%B2%A1%E5%B1%B1%EF%BC%91-Bwxp0y4P.png" alt="岡山縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>岡山縣 <span class="japanese-name">(おかやまけん)</span></h2>
+                        <p>"晴天之國"，擁有日本三大名園之一的後樂園。倉敷美觀地區保留江戶時代風貌，瀨戶大橋連接本州與四國。白桃和葡萄是當地特產。</p>
+                        <a href="/岡山.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+                
+                <!-- 兵庫縣 -->
+                <div class="prefecture-card" data-region="kansai">
+                    <div class="crest-above">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAErElEQVR4nO3dT2wUZRjH8W9bQPzTVhEaQVMhVKKEeFAxhgQJRiM3oxdjTEhQPBg9GfXgRQ+eDPFiOHlpYjRg/HPloFc9iQkiQW3QaLShiqCUGtRuPTydtmzWbTvv8+5Mn/19kkkos/vw7v7Y2enM+wdEZOXqafp5NbAH2AmMAH0db5Gk+A74APim1c67gdPAX8CMthW7/QK8UoRafILXAieA25AIxoEHgNO9s3/xKLC5suaIt43A4wBFwLuw71+JYwvMB9xfYUMko97FHyIrmQIOTgEHp4CDU8DBKeDgFHBwq5zqTAHngGmnet1sDTCEUzYeRb4CXgS+BP51qNftrgUeAV4CbvUqOkq5OxdjwHqvRsgV9mFHxbJ3lUYh/Tv4DPBbYg1p7RhwNrVIasAXUhsgbU2lFtBZdL01Ep57GRRw3ZU9Qjawk14FXHOvYV1wlmMG+BZ4B/x+D5Y8PgMeAg5inSAX+0BOAyeBQ8AlUMArwSnghbJP1iE6OAUcXK5DdC+wA+uGq/9EnTUOfIH1b88S8DDwMdYNd12G+tLeFPADcD9wLsen6yhwFwq3KtcAdwBPg//hcwj7BEu1eoBt4B/wZtTHui5WgX/AzaMVpWI6ww1OAQengIPzDrhB2j1MceYd8Bhw0bmmJPAO+DzwtXNNSZDjUuUTwBFgO3A9+p5fij7gqhyFcwR8HngYC3drhvoRDQC3Y/Nq7AI2ef8Do5Tre/u+d0OEfcCvpM+2Mwo6fNbRMeAnr2IKuJ7+8CqkgOvpslchBRycAg5OAdeT223X1IB1/zcPt4seqQEPubRCmrn1ikkNeASbhlj87AZu8SqWeqlyE/AR8AnwKfBPcou61wbgQeAeHI+MHteih4GnZjepGZ1FB6eAg1PAwSng4BRwcAo4OAUcnAIOTgEHp4CDU8DBFQEfr7QVksNxmL9hfxPwOVq/MIrvgfuAiWJ94Elszdl7sWEUaytqmKS5APwIPI+tJttygeg7gRs62y5x8ju2xILuy4uE0NP05+eAx7CVP5bib2w88MvAn75N63qDwBvYMNw1S3zOJeBD4HCrne9hJ1vLHcXWwEIeKPc6pIUB7D1tsPw8JoF3mwtuByZKFFsY8lsZXmi3Oky5cIttAhtvPHehYzfWq6+sHuzsW3zsIG1QwQZsMtK5gD0Or5o93o/HezkIuhYdngIOTgEHp4CDU8DBKeDgFHBwCjg4BRycAg5OAQengINTwMEp4OAUcHAKODgFHJwCDk4BB6eAg1PAwSng4DwD1uTgfmoz4/tC1znW6na1mRB8oZuxdQslzZM4Lm3nORphHTY+6VXqt4bwFDa47s02j+kDDgF7qG6Gg15gPfZeuvAebnLj7FZHI8DPwNH/2f868CyZVgGtSnGIHq60FZ0xCOxvs38vscIdhvmA3b7Ua+7qNvtWd6wVndEP+j04PAUcnAIOTgEHp4CDU8DBKeDgFHBwCjg4BRxctwU8U3UDOq0I+BTd8eLH2+yb7Fgr8ivmD50zAJwkbX7Eum9naH/XbC92O7HqdqZu01iW/XBl359+4Blizjk5BrwNnF3kcduAA8DG7C3K5wT2Wi9W3RARSfUfS/vF816ysyAAAAAASUVORK5CYII=" alt="兵庫縣徽">
+                    </div>
+                    <div class="prefecture-image-wrapper">
+                        <img src="/assets/%E5%85%B5%E5%BA%AB%EF%BC%91-CY4NGhg-.png" alt="兵庫縣" class="prefecture-image">
+                    </div>
+                    <div class="prefecture-content">
+                        <h2>兵庫縣 <span class="japanese-name">(ひょうごけん)</span></h2>
+                        <p>神戶是國際港口城市，以神戶牛和異人館聞名。姬路城是日本國寶，城崎溫泉是著名溫泉鄉。淡路島的洋蔥和明石鯛魚是當地特產。</p>
+                        <a href="/兵庫.html" class="btn">探索更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>關於我們</h3>
+                <p>提供日本各地旅遊資訊，幫助您規劃完美的日本之旅。</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>聯絡我們</h3>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="您的姓名" required>
+                    <input type="email" placeholder="電子郵件" required>
+                    <textarea placeholder="您的訊息" rows="4" required></textarea>
+                    <button type="submit">發送訊息</button>
+                </form>
+            </div>
+            
+            <div class="footer-section">
+                <h3>追蹤我們</h3>
+                <div class="social-links">
+                 <a href="http://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+            <a href="http://www.twitter.com"><i class="fab fa-twitter"></i></a>
+            <a href="http://www.instragram.com"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.youtube.com"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 日本精選旅遊指南. 版權所有.</p>
+        </div>
+    </footer>
+    
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <script src="/主頁.js"></script>
+    
+</body>
+</html>
