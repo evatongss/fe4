@@ -642,7 +642,7 @@
                 background: black;
                 flex-direction: column;
                 padding: 60px 20px 20px;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                box-shadow: -2px 0 10px red;
                 transition: right 0.3s ease;
                 padding-top: 3px;
                 padding-bottom: 3px;
