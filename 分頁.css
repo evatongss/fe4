@@ -637,7 +637,7 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 30%;
+                width: 70%;
                 height: 100vh;
                 background: black;
                 flex-direction: column;
@@ -646,6 +646,8 @@
                 transition: right 0.3s ease;
                 padding-top: 15px;
                 padding-bottom: 15px;
+                margin: 0;
+                gap: 0;
             }
             
             nav ul.active {
