@@ -636,24 +636,20 @@
             }
             
             nav ul {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: black;
-                flex-direction: column;
-                padding: 60px 20px 20px;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                padding-top: 7px;
-                padding-bottom: 7px;
-                margin: 0;
-                gap: 0;
-                background-color: lightcoral;
-                text-size-adjust: 30px;
-            }
-            
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background: var(--dark-color);
+            flex-direction: column;
+            padding: 70px 20px 20px;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            margin: 0;
+            gap: 0;
+            z-index: 999;
+}
             nav ul.active {
                 right: 0;
             }
