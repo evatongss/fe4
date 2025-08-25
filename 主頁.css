@@ -600,7 +600,7 @@
             padding: 0;
             position: absolute;
             top: 15px;
-            right: 20px;
+            right: 15px;
             z-index: 1000;
         }
         
@@ -629,16 +629,12 @@
             color: white;
             text : black;
             font-weight: 500;
-            font-size: 18px;
-            padding: 16px 25px;
         }
         
         /* 響應式設計 */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex;
-                top: 10px;
-                position: relative;
             }
             
             nav ul {
@@ -649,10 +645,11 @@
                 height: 100vh;
                 background: black;
                 flex-direction: column;
-                padding-top: 10px;
                 padding: 60px 20px 20px;
                 box-shadow: -2px 0 10px rgba(0,0,0,0.1);
                 transition: right 0.3s ease;
+                padding-top: 15px;
+                padding-bottom: 15px;
             }
             
             nav ul.active {
@@ -660,6 +657,6 @@
             }
             
             nav li {
-                margin: 12px 0;
+                margin: 15px 0;
             }
         }
