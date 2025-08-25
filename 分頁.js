@@ -65,3 +65,18 @@ const backToTop = document.getElementById('backToTop');
                 this.classList.add('selected');
             });
         });
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+        
+        // 點擊選單外部區域關閉選單
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('menu');
+            const toggleBtn = document.querySelector('.menu-toggle');
+            
+            if (!menu.contains(event.target) && !toggleBtn.contains(event.target) && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
+        });
