@@ -637,11 +637,11 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 70%;
+                width: 30%;
                 height: 100vh;
                 background: black;
                 flex-direction: column;
-                padding: 30px 20px 20px;
+                padding: 60px 20px 20px;
                 box-shadow: -2px 0 10px rgba(0,0,0,0.1);
                 transition: right 0.3s ease;
                 padding-top: 15px;
