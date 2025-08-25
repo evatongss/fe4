@@ -644,8 +644,8 @@
                 padding: 60px 20px 20px;
                 box-shadow: -2px 0 10px rgba(0,0,0,0.1);
                 transition: right 0.3s ease;
-                padding-top: 8px;
-                padding-bottom: 8px;
+                padding-top: 3px;
+                padding-bottom: 3px;
                 margin: 0;
                 gap: 0;
             }
@@ -655,6 +655,6 @@
             }
             
             nav li {
-                margin: 8px 0;
+                margin: 3px 0;
             }
         }
