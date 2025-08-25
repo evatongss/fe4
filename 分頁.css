@@ -26,8 +26,6 @@
         header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding-left: 20px;
-            justify-content: flex-start;
             padding: 2rem 0;
             text-align: center;
             box-shadow: var(--shadow);
@@ -47,21 +45,16 @@
             z-index: 0;
         }
         
-.content h1 {
-    text-align: left;
-    padding-left: 20px;
-    margin-left: 0;
-}
-
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 10px;
             position: relative;
             z-index: 1;
+            padding-left: 1rem; 
         }
         
         .logo i {
@@ -113,9 +106,10 @@
         }
         
         main {
-            max-width: 1200px;
+            max-width: none;
             margin: 0 auto;
             padding: 2rem 1rem;
+            width: 100%;
         }
         
         .prefecture-header {
@@ -652,11 +646,12 @@
                 padding: 60px 20px 20px;
                 box-shadow: -2px 0 10px rgba(0,0,0,0.1);
                 transition: right 0.3s ease;
-                padding-top: 3px;
-                padding-bottom: 3px;
+                padding-top: 7px;
+                padding-bottom: 7px;
                 margin: 0;
                 gap: 0;
-                background-color: coral;
+                background-color: lightcoral;
+                text-size-adjust: 30px;
             }
             
             nav ul.active {
@@ -664,6 +659,6 @@
             }
             
             nav li {
-                margin: 3px 0;
+                margin: 7px 0;
             }
         }
